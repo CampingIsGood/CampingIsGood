@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>캠핑 이즈 굿</title>
+    <link rel="stylesheet" href="index_style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+  <h1>캠핑 이즈 굿</h1>
+  <nav class="nav-scroll">
+    <a href="mylist.html" class="nav-btn">마이리스트</a>
+    <a href="support.html" class="nav-btn">고객센터</a>
+    <a href="login.html" class="nav-btn">로그인</a>
+    <a href="signup.html" class="nav-btn">회원가입</a>
+  </nav>
+</header>
+
+
+    <!-- Main -->
+    <main>
+        <section class="left-panel">
+            <h2>캠핑러들을 위한 맞춤 서비스</h2>
+            <div class="box">
+                <div class="text">
+                    <h3>캠핑장을 찾고 계신가요?</h3>
+                    <p>맞춤형 캠핑장을 찾아드립니다!</p>
+                    <a href="search.html" class="main-btn">맞춤형 캠핑장 찾기</a>
+                </div>
+                <img src="tent.png" alt="캠핑 일러스트">
+            </div>
+            <div class="box">
+                <div class="text">
+                    <h3>캠핑장 주인이신가요?</h3>
+                    <p>여러분의 캠핑장을 등록하고 운영해보세요!</p>
+                    <a href="register.html" class="main-btn">등록하기</a>
+                </div>
+                <img src="tent.png" alt="캠핑 일러스트">
+            </div>
+        </section>
+
+        <section class="right-panel">
+            <h2>명예의 전당</h2>
+            <div class="slider-wrapper">
+                <button class="slide-btn left">&#10094;</button>
+
+                <div class="slider" id="slider">
+                    <!-- 카드 1 -->
+                    <div class="slide">
+                        <img src="lake.jpg" alt="호수 캠핑장">
+                        <span class="rank">서울 1등</span>
+                        <h3>럭셔리 호수 캠핑장</h3>
+                        <p>서울 종로구 21길 13-2</p>
+                        <a href="hall-of-fame.html" class="main-btn">둘러보기</a>
+                    </div>
+                    <!-- 카드 2 -->
+                    <div class="slide">
+                        <img src="forest.jpg" alt="숲속 캠핑장">
+                        <span class="rank">경기 1등</span>
+                        <h3>숲속 힐링 캠핑장</h3>
+                        <p>경기도 남양주시 깊은숲길 55</p>
+                        <a href="hall-of-fame.html" class="main-btn">둘러보기</a>
+                    </div>
+                    <!-- 카드 3 -->
+                    <div class="slide">
+                        <img src="sea.jpg" alt="바다 캠핑장">
+                        <span class="rank">부산 1등</span>
+                        <h3>해변 오션뷰 캠핑장</h3>
+                        <p>부산 해운대구 해변로 10</p>
+                        <a href="hall-of-fame.html" class="main-btn">둘러보기</a>
+                    </div>
+                </div>
+
+                <button class="slide-btn right">&#10095;</button>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>문의: 010-1234-5678 / campingisgood@gamil.com</p>
+    </footer>
+
+    <!-- JavaScript for Slider -->
+    <script>
+        const slider = document.getElementById("slider");
+        const slides = document.querySelectorAll(".slide");
+        const prevBtn = document.querySelector(".slide-btn.left");
+        const nextBtn = document.querySelector(".slide-btn.right");
+
+        let index = 0;
+        const total = slides.length;
+
+        function updateSlide() {
+            slider.style.transform = `translateX(-${index * 100}%)`;
+        }
+
+        nextBtn.addEventListener("click", () => {
+            index = (index + 1) % total;
+            updateSlide();
+        });
+
+        prevBtn.addEventListener("click", () => {
+            index = (index - 1 + total) % total;
+            updateSlide();
+        });
+
+        // 자동 슬라이드 (3초마다)
+        setInterval(() => {
+            index = (index + 1) % total;
+            updateSlide();
+        }, 3000);
+    </script>
+</body>
+</html>
