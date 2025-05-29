@@ -15,7 +15,7 @@
 
   <!-- 본문 섹션 -->
   <main class="section">
-    <h2 id="city-title">서울시의 명예로운 캠핑장</h2>
+    <h2 id="city-title">명예로운 캠핑장</h2>
     <div class="carousel-container">
       <button class="nav-btn prev" onclick="changeCity(-1)">&#9664;</button>
       <div class="carousel" id="carousel"></div>
@@ -28,71 +28,44 @@
     <p>문의: 010-1234-5678 / campingisgood@gamil.com</p>
   </footer>
 
-  <!-- 자바스크립트 -->
   <script>
-    const data = [
-      {
-        city: "서울시",
-        sites: [
-          {
-            name: "로즈마리 산골목 캠핑장",
-            address: "서울시 성북구 13길 20-3",
-            img: "https://cdn.pixabay.com/photo/2017/07/27/18/51/lake-2547086_960_720.jpg",
-            link: "rose.html"
-          },
-          {
-            name: "초록나무 캠핑장",
-            address: "서울시 마포구 12길 30",
-            img: "https://cdn.pixabay.com/photo/2017/06/20/19/22/landscape-2421797_960_720.jpg",
-            link: "green.html"
-          },
-          {
-            name: "알프스 산맥 캠핑장",
-            address: "서울시 용산구 43길 20",
-            img: "https://cdn.pixabay.com/photo/2018/01/14/23/12/mountain-3082832_960_720.jpg",
-            link: "alps.html"
-          }
-        ]
-      },
-      {
-        city: "부산시",
-        sites: [
-          {
-            name: "해운대 바닷가 캠핑장",
-            address: "부산시 해운대구 달맞이길 33",
-            img: "https://cdn.pixabay.com/photo/2016/03/09/09/30/beach-1246835_960_720.jpg",
-            link: "haeundae.html"
-          },
-          {
-            name: "광안리 해변 캠핑장",
-            address: "부산시 수영구 광안해변로 35",
-            img: "https://cdn.pixabay.com/photo/2017/08/01/08/29/sunset-2564004_960_720.jpg",
-            link: "gwangalli.html"
-          },
-          {
-            name: "송정 바다숲 캠핑장",
-            address: "부산시 기장군 송정동 112",
-            img: "https://cdn.pixabay.com/photo/2016/02/18/18/57/fishing-village-1209748_960_720.jpg",
-            link: "songjeong.html"
-          }
-        ]
-      }
-    ];
+    let data = [];           // 시/도별 Top3 리스트
+    let currentIndex = 0;    // 현재 도시 인덱스
 
-    let currentIndex = 0;
+    // 시/도별 그룹핑 및 평점순 Top3 추출
+    function groupByProvince(list) {
+      const result = {};
+      list.forEach(item => {
+        if (!result[item.province]) result[item.province] = [];
+        result[item.province].push(item);
+      });
+      const fameData = [];
+      Object.entries(result).forEach(([province, arr]) => {
+        arr.sort((a, b) => b.rating - a.rating); // 평점 내림차순
+        fameData.push({
+          city: province,
+          sites: arr.slice(0, 3).map(item => ({
+            name: item.name,
+            address: item.addr,
+            img: item.img,
+            link: item.link
+          }))
+        });
+      });
+      return fameData;
+    }
 
+    // 도시/도 slide 랜더링
     function renderCity(index) {
       const city = data[index];
-      const carousel = document.getElementById('carousel');
-      const title = document.getElementById('city-title');
-      title.textContent = `${city.city}의 명예로운 캠핑장`;
-
-      carousel.innerHTML = city.sites.map(site => `
+      if (!city) return;
+      document.getElementById('city-title').textContent = `${city.city}의 명예로운 캠핑장`;
+      document.getElementById('carousel').innerHTML = city.sites.map(site => `
         <div class="card">
           <img src="${site.img}" alt="${site.name}">
           <h3>${site.name}</h3>
           <p>${site.address}</p>
-          <a href="${site.link}"><button>상세보기</button></a>
+          <a href="${site.link}" target="_blank"><button>상세보기</button></a>
         </div>
       `).join('');
     }
@@ -102,7 +75,16 @@
       renderCity(currentIndex);
     }
 
-    window.onload = () => renderCity(currentIndex);
+    fetch('camps.json')
+      .then(res => res.json())
+      .then(camps => {
+        data = groupByProvince(camps);
+        currentIndex = 0;
+        renderCity(currentIndex);
+      })
+      .catch(err => {
+        document.getElementById('carousel').innerHTML = "<p style='color:red'>데이터를 불러올 수 없습니다.</p>";
+      });
   </script>
 </body>
 </html>
