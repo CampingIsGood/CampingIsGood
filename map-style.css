@@ -1,0 +1,155 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Noto Sans KR', sans-serif;
+    background: #f7f7f7;
+}
+.container {
+    display: flex;
+    height: 100vh;
+    min-height: 100vh;
+}
+.map-area {
+    flex: 1 1 0%;
+    min-width: 0;
+    height: 100vh;
+    position: relative;
+}
+#map {
+    width: 100%;
+    height: 100vh;
+    min-height: 300px;
+}
+.side-panel {
+    width: 370px;
+    background: #ededed;
+    box-shadow: -1px 0 8px rgba(0,0,0,0.04);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 18px 0 20px; 
+    z-index: 10;
+}
+.top-search {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    width: 100%;
+    margin-bottom: 22px;
+}
+.back-btn {
+    flex: 1;
+    padding: 12px 16px;
+    background: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    color: #222;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    cursor: pointer;
+    text-align: left;
+    transition: background 0.1s;
+}
+.back-btn:hover {
+    background: #f6f6f6;
+}
+.search-icon {
+    font-size: 1.3rem;
+    color: #b14e2a;
+    margin-right: 7px;
+}
+.result-list {
+    flex: 1 1 0;
+    width: 100%;
+    overflow-y: auto;
+    overflow-x: visible;  
+    padding-right: 6px;
+}
+.camp-card {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    margin-bottom: 22px;
+    padding: 11px 18px 11px 18px;
+    gap: 15px;
+    cursor: pointer;
+    transition: box-shadow 0.14s, border 0.18s, transform 0.14s, border-radius 0.18s;
+    z-index: 1;
+    overflow: visible;
+    flex-wrap: wrap;
+    border: 2px solid transparent;
+}
+.camp-card.active {
+    box-shadow: 0 8px 32px 0 rgba(255,100,50,0.18);
+    border: 2.5px solid #ffb08a;
+    background: #fffdf9;
+    border-radius: 20px;
+    z-index: 2;
+}
+
+.camp-detail {
+    flex-basis: 100%;
+    width: 100%;
+    background: #fff9ee;
+    border-radius: 0 0 16px 16px;
+    margin: 0 -18px -11px -18px;  /* card의 padding 만큼 음수! */
+    padding: 14px 24px 16px 24px;
+    font-size: 1.01rem;
+    color: #554422;
+    border-top: 1.5px solid #ffe0c0;
+    box-shadow: none;
+    animation: detailOpen 0.18s;
+    line-height: 1.65;
+}
+@keyframes detailOpen {
+    from { opacity: 0; transform: translateY(-7px);}
+    to { opacity: 1; transform: translateY(0);}
+}
+.camp-detail .detail-desc {
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+.camp-detail .detail-row {
+    margin: 5px 0;
+    font-size: 0.97rem;
+    color: #3d3425;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+.camp-detail .detail-row span {
+    min-width: 110px;
+}
+.camp-detail .detail-btns {
+    margin-top: 14px;
+    text-align: right;
+}
+.camp-detail .detail-link {
+    padding: 7px 16px;
+    background: #ffb08a;
+    color: #fff;
+    border-radius: 9px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background 0.13s;
+    border: none;
+    box-shadow: 0 1px 8px #ffddc1a0;
+}
+.camp-detail .detail-link:hover {
+    background: #ff815b;
+}
+
+
+
+@media (max-width: 900px) {
+    .container { flex-direction: column; }
+    .map-area, #map { height: 250px; min-height: 200px; }
+    .side-panel { width: 100vw; min-width: 0; box-shadow: none; padding: 12px 4vw 0 4vw; }
+    .result-list { padding: 0; }
+}

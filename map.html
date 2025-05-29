@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>캠핑장 검색 결과</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="map-style.css">
+    <script type="text/javascript"
+        src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7dab1ae20ccdc377c8c0d2bcd871cec8"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="map-area">
+            <div id="map"></div>
+        </div>
+        <aside class="side-panel">
+            <div class="top-search">
+                <button onclick="window.history.back()" class="back-btn">
+                    다시 찾기 (이전 작업으로 돌아감)
+                </button>
+                <span class="search-icon">&#128269;</span>
+            </div>
+            <div class="result-list" id="result-list"></div>
+        </aside>
+    </div>
+    <script>
+        // 1. 쿼리 파라미터로 검색 조건 받아오기
+        const params = new URLSearchParams(window.location.search);
+        const keyword = params.get('keyword') || '';
+        const province = params.get('province') || '전체/도';
+        const city = params.get('city') || '전체/시/군';
+        const theme = params.get('theme') || '테마 선택';
+        const facility = params.get('facility') || '시설 선택';
+
+        // 2. camps.json 불러오기
+        fetch('camps.json')
+            .then(res => res.json())
+            .then(campingList => {
+                // 3. 필터 함수
+                function filterCamps(list) {
+                    return list.filter(item => {
+                        if (keyword && !(item.name.includes(keyword) || item.addr.includes(keyword))) return false;
+                        if (province && province !== "전체/도" && province !== item.province) return false;
+                        if (city && city !== "전체/시/군" && city !== item.city) return false;
+                        if (theme && theme !== "테마 선택" && (!item.theme || !item.theme.includes(theme))) return false;
+                        if (facility && facility !== "시설 선택" && (!item.facility || !item.facility.includes(facility))) return false;
+                        return true;
+                    });
+                }
+
+                const filtered = filterCamps(campingList);
+
+                // 4. 지도 & 마커 & 리스트
+                const mapContainer = document.getElementById('map');
+                const resultList = document.getElementById('result-list');
+
+                if (filtered.length === 0) {
+                    mapContainer.innerHTML = "<div style='padding:2em;color:#888;'>조건에 맞는 캠핑장이 없습니다.</div>";
+                    resultList.innerHTML = "<div style='padding:2em;color:#888;'>조건에 맞는 캠핑장이 없습니다.</div>";
+                    return;
+                }
+
+                // 지도 생성
+                const mapOption = {
+                    center: new kakao.maps.LatLng(filtered[0].lat, filtered[0].lng),
+                    level: 8
+                };
+                const map = new kakao.maps.Map(mapContainer, mapOption);
+                const bounds = new kakao.maps.LatLngBounds();
+
+                resultList.innerHTML = "";
+
+                filtered.forEach((item, idx) => {
+                    // 카드 생성
+                    const card = document.createElement('div');
+                    card.className = "camp-card";
+                    card.dataset.idx = idx;
+                    card.innerHTML = `
+                        <img src="${item.img}" alt="캠핑장 이미지" style="width: 92px; height: 65px; object-fit: cover; border-radius: 13px; background: #eee; flex-shrink: 0;">
+                        <div class="card-info">
+                            <div class="camp-name">${item.name}</div>
+                            <div class="camp-addr">${item.addr}</div>
+                        </div>
+                    `;
+
+                    // 상세정보 div
+                    const detailDiv = document.createElement('div');
+                    detailDiv.className = "camp-detail";
+                    detailDiv.style.display = "none";
+                    detailDiv.innerHTML = `
+                        <div class="detail-desc">${item.desc || ""}</div>
+                        <div class="detail-row">
+                            <span>운영기간: ${item.season || "-"}</span>
+                            <span>가격: ${item.price || "-"}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>테마: ${item.theme ? item.theme.join(', ') : ""}</span>
+                            <span>시설: ${item.facility ? item.facility.join(', ') : ""}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span>연락처: ${item.phone || "-"}</span>
+                            <span>⭐ ${item.rating || "-"} (${item.review || 0}건)</span>
+                        </div>
+                        <div class="detail-btns">
+                            <a href="${item.link || '#'}" class="detail-link" target="_blank">상세페이지 바로가기</a>
+                        </div>
+                    `;
+                    card.appendChild(detailDiv);
+
+                    card.addEventListener('click', function (e) {
+                        document.querySelectorAll('.camp-detail').forEach(div => div.style.display = "none");
+                        document.querySelectorAll('.camp-card').forEach(c => c.classList.remove('active'));
+                        card.classList.add('active');
+                        detailDiv.style.display = "block";
+                    });
+
+                    resultList.appendChild(card);
+                });
+
+                // --- 마커 생성 및 마커-카드 연결 ---
+                filtered.forEach((item, idx) => {
+                    const marker = new kakao.maps.Marker({
+                        position: new kakao.maps.LatLng(item.lat, item.lng),
+                        map: map
+                    });
+                    bounds.extend(marker.getPosition());
+
+                    kakao.maps.event.addListener(marker, 'click', function () {
+                        document.querySelectorAll('.camp-card').forEach(c => c.classList.remove('active'));
+                        document.querySelectorAll('.camp-detail').forEach(div => div.style.display = "none");
+                        const targetCard = document.querySelector(`.camp-card[data-idx="${idx}"]`);
+                        if (targetCard) {
+                            targetCard.classList.add('active');
+                            const detailDiv = targetCard.querySelector('.camp-detail');
+                            if (detailDiv) detailDiv.style.display = "block";
+                            targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }
+                    });
+                });
+                map.setBounds(bounds);
+            });
+    </script>
+</body>
+</html>

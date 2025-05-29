@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>캠핑장 검색</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="search-style.css">
+</head>
+
+<body>
+  <div class="hero-bg">
+    <div class="hero-content">
+      <h1>캠핑은 언제나 옳습니다</h1>
+      <p class="subtitle">원하는 조건만을 가진 나만의 맞춤형 캠핑장을 추천받아보세요</p>
+      <div class="search-box">
+        <form id="campForm">
+          <div class="form-row">
+            <label>키워드 검색</label>
+            <input type="text" name="keyword" placeholder="검색어를 입력하세요">
+          </div>
+          <div class="form-row">
+            <label>지역별</label>
+            <div class="dropdowns">
+              <div class="dropdown" id="province-dropdown">
+                <button type="button" class="dropbtn" id="province-btn">전체/도</button>
+                <div class="dropdown-content" id="province-list">
+                  <a>전체/도</a>
+                  <a>서울특별시</a>
+                  <a>경기도</a>
+                  <a>강원도</a>
+                  <a>충청북도</a>
+                  <a>충청남도</a>
+                  <a>전라북도</a>
+                  <a>전라남도</a>
+                  <a>경상북도</a>
+                  <a>경상남도</a>
+                  <a>제주도</a>
+                </div>
+              </div>
+              <div class="dropdown" id="city-dropdown">
+                <button type="button" class="dropbtn" id="city-btn">전체/시/군</button>
+                <div class="dropdown-content" id="city-list">
+                  <a>전체/시/군</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <label>테마별</label>
+            <div class="dropdown" id="theme-dropdown">
+              <button type="button" class="dropbtn" id="theme-btn">테마 선택</button>
+              <div class="dropdown-content" id="theme-list">
+                <a>가족</a>
+                <a>커플</a>
+                <a>반려동물</a>
+                <a>차박</a>
+                <a>글램핑</a>
+                <a>카라반</a>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <label>시설 조건</label>
+            <div class="dropdown" id="facility-dropdown">
+              <button type="button" class="dropbtn" id="facility-btn">시설 선택</button>
+              <div class="dropdown-content" id="facility-list">
+                <a>전기</a>
+                <a>화장실</a>
+                <a>샤워장</a>
+                <a>마트/편의점</a>
+                <a>물놀이장</a>
+                <a>와이파이</a>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="search-btn">검색하기</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script>
+    // 시/도별 시/군 리스트
+    const cityData = {
+      "전체/도": ["전체/시/군"],
+      "서울특별시": ["전체/시/군", "강남구", "종로구", "서초구", "강서구", "송파구"],
+      "경기도": ["전체/시/군", "수원시", "성남시", "고양시", "용인시", "부천시", "의정부시"],
+      "강원도": ["전체/시/군", "춘천시", "원주시", "강릉시", "속초시", "동해시"],
+      "충청북도": ["전체/시/군", "청주시", "충주시", "제천시", "단양군"],
+      "충청남도": ["전체/시/군", "천안시", "아산시", "서산시", "논산시"],
+      "전라북도": ["전체/시/군", "전주시", "군산시", "익산시", "정읍시"],
+      "전라남도": ["전체/시/군", "목포시", "여수시", "순천시", "광양시"],
+      "경상북도": ["전체/시/군", "포항시", "경주시", "구미시", "안동시"],
+      "경상남도": ["전체/시/군", "창원시", "진주시", "김해시", "양산시"],
+      "제주도": ["전체/시/군", "제주시", "서귀포시"]
+    };
+
+    // 드롭다운 기능 (공통)
+    document.querySelectorAll('.dropdown').forEach(dropdown => {
+      const btn = dropdown.querySelector('.dropbtn');
+      const content = dropdown.querySelector('.dropdown-content');
+      btn.addEventListener('click', e => {
+        document.querySelectorAll('.dropdown').forEach(d => {
+          if (d !== dropdown) d.classList.remove('show');
+        });
+        dropdown.classList.toggle('show');
+      });
+      content.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          btn.textContent = a.textContent;
+          dropdown.classList.remove('show');
+
+          // 도 선택 시, 시/군 변경
+          if (dropdown.id === "province-dropdown") {
+            updateCityList(a.textContent);
+            // 시/군도 초기화
+            document.getElementById('city-btn').textContent = "전체/시/군";
+          }
+        });
+      });
+    });
+
+    // 드롭다운 외부 클릭 시 닫기
+    window.addEventListener('click', function (e) {
+      document.querySelectorAll('.dropdown').forEach(dropdown => {
+        if (!dropdown.contains(e.target)) dropdown.classList.remove('show');
+      });
+    });
+
+    // 시/군 목록 변경 함수
+    function updateCityList(province) {
+      const cityListDiv = document.getElementById('city-list');
+      cityListDiv.innerHTML = "";
+      (cityData[province] || ["전체/시/군"]).forEach(city => {
+        const a = document.createElement('a');
+        a.textContent = city;
+        a.addEventListener('click', () => {
+          document.getElementById('city-btn').textContent = city;
+          document.getElementById('city-dropdown').classList.remove('show');
+        });
+        cityListDiv.appendChild(a);
+      });
+    }
+
+    document.getElementById('campForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      // 입력값 가져오기
+      const keyword = document.querySelector('input[name="keyword"]').value;
+      const province = document.getElementById('province-btn').textContent.trim();
+      const city = document.getElementById('city-btn').textContent.trim();
+      const theme = document.getElementById('theme-btn').textContent.trim();
+      const facility = document.getElementById('facility-btn').textContent.trim();
+
+      // 쿼리스트링 생성
+      const params = new URLSearchParams({
+        keyword,
+        province,
+        city,
+        theme,
+        facility
+      });
+
+      // map.html로 이동하며 값 전달
+      window.location.href = 'map.html?' + params.toString();
+    });
+  </script>
+</body>
+
+</html>
