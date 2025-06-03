@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>로즈마리 산골목 캠핑장 예약</title>
+  <link rel="stylesheet" href="reserve-style.css">
+</head>
+
+<body>
+  
+  <div class="hero-bg">
+    <div class="hero-title">
+      <h1>로즈마리 산골목 캠핑장</h1>
+      <p>서울시 성북구 13길 20-3</p>
+    </div>
+  </div>
+
+
+  <main>
+    <div class="reserve-main">
+      <div class="reserve-card">
+        <!-- 좌측 : 상세정보 + 주의사항 -->
+        <div class="reserve-info">
+          <div class="reserve-info-inner">
+            <div class="camp-desc">
+              <b>도심 속 산골목에서 자연을 만나는 힐링 캠핑!</b><br>
+              전기와 마트, 깨끗한 화장실 완비.<br>
+              운영기간 : 연중무휴<br>
+              가격 : 1박 40,000원~
+            </div>
+            <div class="camp-caution">
+              <b>이용 시 주의사항</b>
+              <ul>
+                <li>쓰레기는 반드시 지정된 장소에 분리수거해 주세요.</li>
+                <li>캠프파이어는 지정 구역에서만 가능합니다.</li>
+                <li>야간 소음에 유의해 주세요.</li>
+                <li>애완동물 동반 시 반드시 목줄 착용 바랍니다.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="reserve-divider"></div>
+
+        <!-- 중앙 : 달력 -->
+        <div class="reserve-calendar">
+          <div class="calendar-title">날짜를 선택해주세요.</div>
+
+          <!-- 월 이동 -->
+          <div class="calendar-nav">
+            <button id="prev-month" class="cal-btn">◀</button>
+            <span id="cal-label"></span>
+            <button id="next-month" class="cal-btn">▶</button>
+          </div>
+
+          <table class="calendar-table">
+            <thead>
+              <tr>
+                <th>일</th><th>월</th><th>화</th><th>수</th><th>목</th><th>금</th><th>토</th>
+              </tr>
+            </thead>
+            <tbody id="cal-body"></tbody>
+          </table>
+
+          <div class="calendar-tz">대한민국/서울 (UDT)</div>
+        </div>
+
+        <div class="reserve-divider"></div>
+
+        <!-- 우측 : 시간 선택 -->
+        <div class="reserve-times">
+          <div class="time-title">시간 선택</div>
+          <div class="time-date" id="selected-date">날짜를 먼저 선택하세요</div>
+
+          <div class="time-list">
+            <div class="time-slot">09:00</div>
+            <div class="time-slot">09:30</div>
+            <div class="time-slot">10:00</div>
+            <div class="time-slot">10:30</div>
+            <div class="time-slot">11:00</div>
+            <div class="time-slot">11:30</div>
+          </div>
+
+          <form action="complete.html" method="get">
+            <button type="submit" class="btn-reserve">예약하기</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ── 푸터 ──────────────────────────────────────────── -->
+  <footer>
+    문의 : 010-1234-5678 / campingisgood@gmail.com
+  </footer>
+
+  <!-- ── 스크립트 : 달력 & 선택 로직 ──────────────────── -->
+  <script>
+  /* 달력 상태 */
+  let today     = new Date();
+  let viewYear  = today.getFullYear();
+  let viewMonth = today.getMonth();       // 0-11
+  const label   = document.getElementById('cal-label');
+  const tbody   = document.getElementById('cal-body');
+  const dateLbl = document.getElementById('selected-date');
+
+  /* 달력 렌더 */
+  function renderCalendar(y, m){
+    label.textContent = `${y}년 ${m+1}월`;
+    tbody.innerHTML = '';
+
+    const first = new Date(y, m, 1).getDay();
+    const last  = new Date(y, m+1, 0).getDate();
+    let row = document.createElement('tr');
+
+    for(let i=0;i<first;i++) row.appendChild(document.createElement('td'));
+
+    for(let d=1; d<=last; d++){
+      if((first+d-1)%7===0 && d!==1){ tbody.appendChild(row); row=document.createElement('tr'); }
+      const td = document.createElement('td');
+      td.className = 'date';
+      td.textContent = d;
+      row.appendChild(td);
+    }
+    tbody.appendChild(row);
+
+    /* 날짜 클릭 */
+    document.querySelectorAll('.date').forEach(td=>{
+      td.onclick = ()=>{
+        document.querySelectorAll('.date').forEach(el=>el.classList.remove('active'));
+        td.classList.add('active');
+        const selDate = new Date(viewYear, viewMonth, td.textContent);
+        const wk = ['일','월','화','수','목','금','토'][selDate.getDay()];
+        dateLbl.textContent = `${viewMonth+1}월 ${td.textContent}일 ${wk}요일`;
+      };
+    });
+  }
+
+  document.getElementById('prev-month').onclick = ()=>{
+    viewMonth--; if(viewMonth<0){viewMonth=11;viewYear--;} renderCalendar(viewYear,viewMonth);
+  };
+  document.getElementById('next-month').onclick = ()=>{
+    viewMonth++; if(viewMonth>11){viewMonth=0;viewYear++;} renderCalendar(viewYear,viewMonth);
+  };
+
+  /* 시간 슬롯 선택 */
+  document.querySelectorAll('.time-slot').forEach(div=>{
+    div.onclick = ()=>{
+      document.querySelectorAll('.time-slot').forEach(el=>el.classList.remove('selected'));
+      div.classList.add('selected');
+    };
+  });
+
+  /* 최초 호출 */
+  renderCalendar(viewYear, viewMonth);
+  </script>
+</body>
+</html>

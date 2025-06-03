@@ -1,0 +1,335 @@
+/* ─── 공통 ───────────────────────────── */
+body {
+    margin: 0;
+    background: #f5f5f5;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.hero-bg {
+    background: url('https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=1350&q=80') center/cover;
+    height: 260px;
+    position: relative;
+}
+
+.hero-title {
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    z-index: 2;
+}
+
+.hero-title h1 {
+    font-size: 42px;
+    margin: 0;
+    color: #222;
+    text-shadow: 0 2px 8px #fff6;
+}
+
+.hero-title p {
+    font-size: 24px;
+    margin-top: 6px;
+    color: #444;
+    text-shadow: 0 2px 6px #fff9;
+}
+
+/* ─── 메인 카드 레이아웃 ─────────────────────── */
+.reserve-main {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: -60px;
+    min-height: 100vh;
+}
+
+.reserve-card {
+    display: flex;
+    flex-direction: row;
+    background: white;
+    border-radius: 36px;
+    width: 1000px;
+    max-width: 98vw;
+    min-height: 520px;
+    margin: 60px 0 40px;
+    box-shadow: 0 6px 24px #0002;
+    overflow: hidden;
+}
+
+.reserve-divider {
+    width: 2px;
+    background: #fff;
+    margin: 25px 0;
+}
+
+/* ─── 좌측 : 상세 & 주의 ─────────────────────── */
+.reserve-info {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #ff916b 93%, #ffb38d 100%);
+    border-radius: 36px 0 0 36px;
+    margin: 0;
+    min-width: 260px;
+    box-shadow: 0 4px 24px #ff986a28;
+}
+
+.reserve-info-inner {
+    width: 96%;
+    padding: 33px 12px 32px 28px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+.camp-desc {
+    font-size: 1.13rem;
+    font-weight: 700;
+    line-height: 1.55;
+    margin-bottom: 14px;
+    text-shadow: 0 2px 10px #fc814312;
+}
+
+.camp-desc b {
+    font-size: 1.15em;
+    margin-bottom: 8px;
+    display: block;
+    text-shadow: 0 2px 8px #e2691c40;
+}
+
+.camp-caution {
+    margin-top: 22px;
+    font-size: 1.03rem;
+    line-height: 1.7;
+    background: rgba(255, 255, 255, .08);
+    border-radius: 16px;
+    padding: 10px 16px;
+    box-shadow: 0 2px 6px #0001;
+    color: #fffbe5;
+}
+
+.camp-caution b {
+    color: #ffe2b1;
+    font-weight: 700;
+    font-size: 1.06em;
+    margin-bottom: 7px;
+    display: block;
+}
+
+.camp-caution ul {
+    padding-left: 17px;
+    margin: 0;
+}
+
+.camp-caution li {
+    margin-bottom: 6px;
+    font-size: .97em;
+}
+
+/* ─── 중앙 : 달력 ────────────────────────────── */
+.reserve-calendar {
+    flex: 2.1;
+    min-width: 340px;
+    padding: 40px 30px 28px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.calendar-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.calendar-nav {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 12px;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.cal-btn {
+    border: none;
+    background: transparent;
+    font-size: 1.5rem;
+    color: #ff8040;
+    cursor: pointer;
+    transition: .12s;
+}
+
+.cal-btn:hover {
+    transform: scale(1.15);
+}
+
+.calendar-table {
+    width: 100%;
+    max-width: 320px;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+    font-size: 1.15rem;
+}
+
+.calendar-table th {
+    font-size: .95em;
+    font-weight: 600;
+    color: #444;
+    padding-bottom: 4px;
+}
+
+.calendar-table td {
+    width: 46px;
+    height: 46px;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: .15s;
+    border: 2px solid transparent;
+}
+
+.calendar-table td.date {
+    background: #d8ecf1;
+    color: #396280;
+    font-weight: 500;
+}
+
+.calendar-table td.date:hover {
+    background: #b6ddea;
+}
+
+.calendar-table td.active {
+    background: #349dca;
+    color: #fff;
+    font-weight: 700;
+    border-color: #2fb2e7;
+    box-shadow: 0 3px 10px #55b4da55;
+}
+
+.calendar-table td:empty {
+    cursor: default;
+    background: transparent;
+}
+
+.calendar-tz {
+    margin-top: 14px;
+    font-size: .9rem;
+    color: #888;
+}
+
+/* ─── 우측 : 시간 선택 ───────────────────────── */
+.reserve-times {
+    flex: 1.2;
+    background: #fff;
+    border-radius: 0 32px 32px 0;
+    padding: 36px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.time-title {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+.time-date {
+    font-size: 1.01rem;
+    margin-bottom: 14px;
+    color: #888;
+}
+
+.time-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.time-slot {
+    padding: 8px 18px;
+    border-radius: 7px;
+    background: #f7f7f7;
+    border: 1.2px solid #eee;
+    font-size: 1.04rem;
+    cursor: pointer;
+    transition: background .15s, border .15s;
+}
+
+.time-slot.selected {
+    background: #59a4c2;
+    color: #fff;
+    border-color: #59a4c2;
+}
+
+.btn-reserve {
+    width: 150px;
+    padding: 12px 0;
+    border: none;
+    border-radius: 9px;
+    background: #222;
+    color: #fff;
+    font-size: 1.13rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background .17s;
+}
+
+.btn-reserve:hover {
+    background: #59a4c2;
+}
+
+/* ─── 푸터 ───────────────────────────────────── */
+footer {
+    background: #ddd;
+    text-align: center;
+    color: #222;
+    padding: 12px 0;
+    font-size: .98rem;
+    margin-top: 36px;
+}
+
+/* ─── 반응형 ────────────────────────────────── */
+@media(max-width:1020px) {
+    .reserve-card {
+        flex-direction: column;
+        width: 97vw;
+        min-width: 340px;
+    }
+
+    .reserve-info,
+    .reserve-calendar,
+    .reserve-times {
+        border-radius: 28px 28px 0 0;
+        margin: 0;
+    }
+
+    .reserve-divider {
+        width: 95%;
+        height: 2px;
+    }
+}
+
+@media(max-width:700px) {
+    .reserve-main {
+        margin-top: 0;
+    }
+
+    .hero-title h1 {
+        font-size: 2rem;
+    }
+
+    .calendar-table {
+        max-width: 260px;
+        font-size: 1rem;
+    }
+
+    .calendar-table td {
+        width: 40px;
+        height: 40px;
+    }
+}
