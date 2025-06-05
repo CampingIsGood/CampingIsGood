@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>예약 조회 및 관리</title>
+    <link rel="stylesheet" href="reservation-list.css">
+</head>
+
+<body>
+    <main>
+        <div class="container">
+            <header>
+                <h1>예약 조회 및 관리</h1>
+                <div class="summary-row">
+                    <div>총 예약: <span id="total-count">10</span></div>
+                    <div>예약완료: <span class="status-dot completed"></span> 3</div>
+                    <div>대기중: <span class="status-dot pending"></span> 6</div>
+                    <div>취소완료: <span class="status-dot cancelled"></span> 1</div>
+                    <button class="download-btn">CSV 다운로드</button>
+                </div>
+                <div class="toolbar">
+                    <input type="text" placeholder="이름, 전화번호, 날짜 검색" class="search-bar">
+                    <select class="filter-status">
+                        <option value="all">전체 상태</option>
+                        <option value="pending">대기중</option>
+                        <option value="completed">예약완료</option>
+                        <option value="cancelled">취소완료</option>
+                    </select>
+                </div>
+            </header>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>이름</th>
+                            <th>전화번호</th>
+                            <th>예약일시</th>
+                            <th>상태</th>
+                            <th>액션</th>
+                            <th>상세</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>김지민</td>
+                            <td>010-1234-5678</td>
+                            <td>2023-08-13 10:00</td>
+                            <td><span class="status pending">대기중</span></td>
+                            <td>
+                                <button class="btn confirm">예약확정</button>
+                                <button class="btn cancel">예약취소</button>
+                                <button class="btn delete" title="삭제">X</button>
+                            </td>
+                            <td>
+                                <button class="btn details"><img src="images/details-icon.png" alt="상세"></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>이수현</td>
+                            <td>010-8765-4321</td>
+                            <td>2023-08-13 11:30</td>
+                            <td><span class="status completed">예약완료</span></td>
+                            <td>
+                                <button class="btn confirm" disabled>예약확정</button>
+                                <button class="btn cancel">예약취소</button>
+                                <button class="btn delete" title="삭제">X</button>
+                            </td>
+                            <td>
+                                <button class="btn details"><img src="images/details-icon.png" alt="상세"></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>박서준</td>
+                            <td>010-2345-6789</td>
+                            <td>2023-08-13 12:00</td>
+                            <td><span class="status pending">대기중</span></td>
+                            <td>
+                                <button class="btn confirm">예약확정</button>
+                                <button class="btn cancel">예약취소</button>
+                                <button class="btn delete" title="삭제">X</button>
+                            </td>
+                            <td>
+                                <button class="btn details"><img src="images/details-icon.png" alt="상세"></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>최민정</td>
+                            <td>010-3456-7890</td>
+                            <td>2023-08-13 13:00</td>
+                            <td><span class="status pending">대기중</span></td>
+                            <td>
+                                <button class="btn confirm">예약확정</button>
+                                <button class="btn cancel">예약취소</button>
+                                <button class="btn delete" title="삭제">X</button>
+                            </td>
+                            <td>
+                                <button class="btn details"><img src="images/details-icon.png" alt="상세"></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>윤아람</td>
+                            <td>010-5678-1234</td>
+                            <td>2023-08-13 14:00</td>
+                            <td><span class="status completed">예약완료</span></td>
+                            <td>
+                                <button class="btn confirm" disabled>예약확정</button>
+                                <button class="btn cancel">예약취소</button>
+                                <button class="btn delete" title="삭제">X</button>
+                            </td>
+                            <td>
+                                <button class="btn details"><img src="images/details-icon.png" alt="상세"></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>정해인</td>
+                            <td>010-6789-0123</td>
+                            <td>2023-08-13 15:00</td>
+                            <td><span class="status cancelled">취소완료</span></td>
+                            <td>
+                                <button class="btn confirm" disabled>예약확정</button>
+                                <button class="btn cancel" disabled>예약취소</button>
+                                <button class="btn delete" title="삭제">X</button>
+                            </td>
+                            <td>
+                                <button class="btn details"><img src="images/details-icon.png" alt="상세"></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>오유진</td>
+                            <td>010-7890-1234</td>
+                            <td>2023-08-13 16:00</td>
+                            <td><span class="status pending">대기중</span></td>
+                            <td>
+                                <button class="btn confirm">예약확정</button>
+                                <button class="btn cancel">예약취소</button>
+                                <button class="btn delete" title="삭제">X</button>
+                            </td>
+                            <td>
+                                <button class="btn details"><img src="images/details-icon.png" alt="상세"></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>김도현</td>
+                            <td>010-8901-2345</td>
+                            <td>2023-08-13 17:00</td>
+                            <td><span class="status pending">대기중</span></td>
+                            <td>
+                                <button class="btn confirm">예약확정</button>
+                                <button class="btn cancel">예약취소</button>
+                                <button class="btn delete" title="삭제">X</button>
+                            </td>
+                            <td>
+                                <button class="btn details"><img src="images/details-icon.png" alt="상세"></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>송지우</td>
+                            <td>010-9012-3456</td>
+                            <td>2023-08-13 18:00</td>
+                            <td><span class="status completed">예약완료</span></td>
+                            <td>
+                                <button class="btn confirm" disabled>예약확정</button>
+                                <button class="btn cancel">예약취소</button>
+                                <button class="btn delete" title="삭제">X</button>
+                            </td>
+                            <td>
+                                <button class="btn details"><img src="images/details-icon.png" alt="상세"></button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>백승우</td>
+                            <td>010-0123-4567</td>
+                            <td>2023-08-13 19:00</td>
+                            <td><span class="status pending">대기중</span></td>
+                            <td>
+                                <button class="btn confirm">예약확정</button>
+                                <button class="btn cancel">예약취소</button>
+                                <button class="btn delete" title="삭제">X</button>
+                            </td>
+                            <td>
+                                <button class="btn details"><img src="images/details-icon.png" alt="상세"></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="pagination">
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>문의: 010-1234-5678 / campingisgood@gamil.com</p>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll('.btn.confirm').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    const row = btn.closest('tr');
+                    row.querySelector('.status').className = "status completed";
+                    row.querySelector('.status').textContent = "예약완료";
+                    btn.disabled = true;
+                    row.querySelector('.btn.cancel').disabled = false;
+                });
+            });
+            document.querySelectorAll('.btn.cancel').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    const row = btn.closest('tr');
+                    row.querySelector('.status').className = "status cancelled";
+                    row.querySelector('.status').textContent = "취소완료";
+                    btn.disabled = true;
+                    row.querySelector('.btn.confirm').disabled = true;
+                });
+            });
+            document.querySelectorAll('.btn.delete').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    btn.closest('tr').remove();
+                });
+            });
+        });
+
+    </script>
+</body>
+
+</html>
