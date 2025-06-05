@@ -2,7 +2,7 @@
   {
     "name": "로즈마리 산골목 캠핑장",
     "addr": "서울시 성북구 13길 20-3",
-    "img": "https://cdn.pixabay.com/photo/2020/03/15/03/07/camping-4932314_1280.jpg",
+    "img": "images/로즈마리.png",
     "lat": 37.6022,
     "lng": 127.0137,
     "province": "서울특별시",
@@ -20,7 +20,7 @@
   {
     "name": "초록나무 캠핑장",
     "addr": "서울시 마포구 12길 30",
-    "img": "https://cdn.pixabay.com/photo/2020/03/01/06/43/spring-4891823_1280.jpg",
+    "img": "images/초록나무.png",
     "lat": 37.5562,
     "lng": 126.9107,
     "province": "서울특별시",
@@ -38,7 +38,7 @@
   {
     "name": "알프스 산맥 캠핑장",
     "addr": "서울시 용산구 43길 20",
-    "img": "https://cdn.pixabay.com/photo/2017/08/17/08/08/camp-2650359_1280.jpg",
+    "img": "images/알프스.png",
     "lat": 37.5325,
     "lng": 126.9901,
     "province": "서울특별시",
@@ -56,7 +56,7 @@
   {
     "name": "한강 뷰 캠핑장",
     "addr": "서울시 영등포구 여의도동 1-1",
-    "img": "https://cdn.pixabay.com/photo/2020/03/15/03/07/camping-4932314_1280.jpg",
+    "img": "images/한강뷰.png",
     "lat": 37.5260,
     "lng": 126.9241,
     "province": "서울특별시",
@@ -75,7 +75,7 @@
   {
     "name": "해운대 바닷가 캠핑장",
     "addr": "부산시 해운대구 달맞이길 33",
-    "img": "https://cdn.pixabay.com/photo/2016/09/28/12/35/scotland-1700413_1280.jpg",
+    "img": "images/해운대.png",
     "lat": 35.1632,
     "lng": 129.1636,
     "province": "부산광역시",
@@ -93,7 +93,7 @@
   {
     "name": "광안리 해변 캠핑장",
     "addr": "부산시 수영구 광안해변로 35",
-    "img": "https://cdn.pixabay.com/photo/2020/02/09/08/08/tent-4832253_1280.jpg",
+    "img": "images/광안리.png",
     "lat": 35.1534,
     "lng": 129.1186,
     "province": "부산광역시",
@@ -111,7 +111,7 @@
   {
     "name": "송정 바다숲 캠핑장",
     "addr": "부산시 기장군 송정동 112",
-    "img": "https://cdn.pixabay.com/photo/2020/01/30/19/15/camping-4806279_1280.jpg",
+    "img": "images/바다숲.png",
     "lat": 35.1815,
     "lng": 129.2026,
     "province": "부산광역시",
@@ -130,7 +130,7 @@
   {
     "name": "설악산 힐링 캠핑장",
     "addr": "강원도 속초시 설악동 100-12",
-    "img": "https://cdn.pixabay.com/photo/2021/02/05/01/22/man-5983064_1280.jpg",
+    "img": "images/설악산.png",
     "lat": 38.1706,
     "lng": 128.5603,
     "province": "강원도",
@@ -148,7 +148,7 @@
   {
     "name": "춘천 숲속 캠핑장",
     "addr": "강원도 춘천시 남산면 77-9",
-    "img": "https://cdn.pixabay.com/photo/2017/09/27/04/41/camping-2790968_1280.jpg",
+    "img": "images/춘천숲속.png",
     "lat": 37.8805,
     "lng": 127.7292,
     "province": "강원도",
@@ -166,7 +166,7 @@
   {
     "name": "평창강 오토 캠핑장",
     "addr": "강원도 평창군 진부면 23-8",
-    "img": "https://cdn.pixabay.com/photo/2020/07/27/14/34/stars-5442598_1280.jpg",
+    "img": "images/평창강.png",
     "lat": 37.6058,
     "lng": 128.5653,
     "province": "강원도",
@@ -185,7 +185,7 @@
   {
     "name": "남한산성 숲 캠핑장",
     "addr": "경기도 광주시 남한산성면 15-4",
-    "img": "https://cdn.pixabay.com/photo/2023/01/22/16/45/nature-7736939_1280.jpg",
+    "img": "images/남한산성.png",
     "lat": 37.4774,
     "lng": 127.2083,
     "province": "경기도",
@@ -203,7 +203,7 @@
   {
     "name": "파주 임진강 오토캠핑장",
     "addr": "경기도 파주시 탄현면 220-1",
-    "img": "https://cdn.pixabay.com/photo/2019/11/07/20/50/camping-4609879_1280.jpg",
+    "img": "images/파주임진강.png",
     "lat": 37.7886,
     "lng": 126.7756,
     "province": "경기도",
@@ -221,7 +221,7 @@
   {
     "name": "양평 두물머리 캠핑장",
     "addr": "경기도 양평군 양서면 72-2",
-    "img": "https://cdn.pixabay.com/photo/2021/12/10/17/42/camp-6861087_1280.jpg",
+    "img": "images/두물머리.png",
     "lat": 37.5641,
     "lng": 127.2873,
     "province": "경기도",
@@ -240,7 +240,7 @@
   {
     "name": "성산 해변 캠핑장",
     "addr": "제주도 서귀포시 성산읍 45-9",
-    "img": "https://cdn.pixabay.com/photo/2020/02/26/07/15/tent-4880855_1280.jpg",
+    "img": "images/성산해변.png",
     "lat": 33.4584,
     "lng": 126.9426,
     "province": "제주도",
@@ -258,7 +258,7 @@
   {
     "name": "한림 오름숲 캠핑장",
     "addr": "제주도 제주시 한림읍 200-1",
-    "img": "https://cdn.pixabay.com/photo/2017/08/29/04/16/site-2692058_1280.jpg",
+    "img": "images/한림.png",
     "lat": 33.4147,
     "lng": 126.2633,
     "province": "제주도",
@@ -276,7 +276,7 @@
   {
     "name": "우도 섬속의섬 캠핑장",
     "addr": "제주도 우도면 연평리 55",
-    "img": "https://cdn.pixabay.com/photo/2017/07/31/21/16/tent-2561141_1280.jpg",
+    "img": "images/우도.png",
     "lat": 33.5097,
     "lng": 126.9566,
     "province": "제주도",
