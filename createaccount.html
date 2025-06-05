@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>회원가입</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .button-wrapper {
+        text-align: center;
+        margin-top: auto;
+    }
+
+    body {
+      background-image: url('tent.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .form-wrapper {
+      background: rgba(255, 255, 255, 0.95);
+      width: 550px;
+      height: 100vh;
+      box-sizing: border-box;
+      padding: 40px;
+      border-radius: 0px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      flex-shrink: 0;
+    }
+
+    .form-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+      flex-shrink: 0;
+    }
+
+    .form-group label {
+      width: 130px;
+      font-weight: bold;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group .gender-box {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    .gender-box {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      padding: 0;
+      border: none;
+    }
+
+    .gender-box label {
+      font-weight: normal;
+      margin: 0;
+    }
+
+    .terms {
+      display: flex;
+      align-items: center;
+      margin-top: 20px;
+      flex-shrink: 0;
+    }
+
+    .terms input[type="checkbox"] {
+      margin-right: 10px;
+    }
+
+    button {
+        width: 200px;
+        padding: 12px;
+        background-color: #e76f51;
+        color: white;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        margin: auto;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+        flex-shrink: 0;
+        align-self:center;
+    }
+
+    button:hover {
+      background-color: #E76F51;
+    }
+
+    .address-group {
+        display: flex;
+        align-items: center;
+    }
+
+    .address-group label {
+        width: 130px; /* 기존 레이블 너비 유지 */
+        font-weight: bold;
+    }
+
+    .address-group input {
+        flex: 1;
+        margin-right: 10px; /* 버튼과 간격 */
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="form-wrapper">
+    <h2>회원가입</h2>
+    <form action="/signup" method="post">
+
+      <div class="form-group">
+        <label for="password">비밀번호</label>
+        <input type="password" id="password" name="password" required />
+      </div>
+      <br></br>
+      <div class="form-group">
+        <label for="confirm-password">비밀번호 확인</label>
+        <input type="password" id="confirm-password" name="confirm_password" required />
+      </div>
+      <br></br>
+        <div class="form-group">
+        <label for="name">이름</label>
+        <input type="text" id="name" name="name" required />
+      </div>
+      <br></br>
+      <div class="form-group">
+        <label for="email">이메일</label>
+        <input type="email" id="email" name="email" required />
+      </div>
+      <br></br>
+      <div class="form-group">
+        <label for="phone">휴대폰</label>
+        <input type="tel" id="phone" name="phone" placeholder="010-1234-5678" required />
+      </div>
+      <br></br>
+      
+      <div class="form-group address-group" style="flex-direction: column; align-items: flex-start;">
+        <div style="display: flex; align-items: center; width: 100%;">
+            <label for="address" style="width: 130px; font-weight: bold; margin-right: 10px;">주소</label>
+            <input type="text" id="address" name="address" readonly style="flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box;" />
+  </div>
+  <button type="button" onclick="execDaumPostcode()" style="margin-top: 8px;">주소 검색</button>
+</div>
+
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+  function execDaumPostcode() {
+    new daum.Postcode({
+      oncomplete: function(data) {
+        // 선택된 주소를 input에 넣기
+        document.getElementById('address').value = data.address;
+      }
+    }).open();
+  }
+</script>
+
+<br></br>
+
+      <div class="form-group">
+        <label for="birthdate">생년월일</label>
+        <input type="date" id="birthdate" name="birthdate" required />
+      </div>
+      <br></br>
+      <div class="terms">
+        <input type="checkbox" id="agree" name="agree" required />
+        <label for="agree">이용약관 및 개인정보 수집에 동의합니다.</label>
+      </div>
+
+      <br></br>
+      <div class="button-wrapper">
+      <button type="submit">Sign Up</button>
+    </div>
+    </form>
+  </div>
+
+</body>
+</html>
