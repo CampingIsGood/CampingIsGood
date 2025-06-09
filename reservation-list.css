@@ -1,18 +1,23 @@
-/* Reset & 기본 스타일 */
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   padding: 0;
   background: #f9f9f9;
   font-family: 'Noto Sans KR', 'Malgun Gothic', sans-serif;
   color: #222;
-  background-image: url('images/background.png'); /* 추가 */
-  background-size: cover;       /* 꽉 채우기 */
-  background-position: center;  /* 중앙 정렬 */
-  background-repeat: no-repeat; /* 반복 없음 */
+  background-image: url('images/background.png');
+  /* 추가 */
+  background-size: cover;
+  /* 꽉 채우기 */
+  background-position: center;
+  /* 중앙 정렬 */
+  background-repeat: no-repeat;
+  /* 반복 없음 */
 }
 
-/* 컨테이너와 헤더 */
 .container {
   max-width: 1000px;
   margin: 32px auto;
@@ -21,6 +26,7 @@ body {
   box-shadow: 0 6px 32px #0001;
   padding: 28px 22px 40px 22px;
 }
+
 header h1 {
   margin-top: 0;
   margin-bottom: 10px;
@@ -28,6 +34,7 @@ header h1 {
   letter-spacing: -1px;
   font-weight: 800;
 }
+
 .summary-row {
   display: flex;
   gap: 20px;
@@ -35,6 +42,7 @@ header h1 {
   margin-bottom: 16px;
   font-size: 1.03rem;
 }
+
 .summary-row .download-btn {
   margin-left: auto;
   background: #e7743a;
@@ -46,23 +54,38 @@ header h1 {
   cursor: pointer;
   transition: background 0.15s;
 }
-.summary-row .download-btn:hover { background: #c05618; }
+
+.summary-row .download-btn:hover {
+  background: #c05618;
+}
+
 .status-dot {
   display: inline-block;
-  width: 10px; height: 10px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   vertical-align: -1px;
   margin-right: 2px;
 }
-.status-dot.completed { background: #5e9c3f; }
-.status-dot.booked { background: #3b72e9; }
-.status-dot.open { background: #fbbf24; }
+
+.status-dot.completed {
+  background: #3b82f6;
+}
+
+.status-dot.pending {
+  background: #fbbf24;
+}
+
+.status-dot.cancelled {
+  background: #e65a6b;
+}
 
 .toolbar {
   display: flex;
   gap: 10px;
   margin-bottom: 18px;
 }
+
 .toolbar .search-bar {
   flex: 1;
   padding: 8px 12px;
@@ -71,42 +94,55 @@ header h1 {
   border: 1px solid #ddd;
   background: #fafafa;
 }
+
 .toolbar .filter-status {
   padding: 8px 12px;
   border-radius: 8px;
   border: 1px solid #ddd;
   background: #fafafa;
   font-size: 1rem;
+  min-width: 120px;
+  color: #23240c;
+  cursor: pointer;
+  transition: border 0.16s;
 }
 
-/* 테이블 */
+.toolbar .filter-status:focus {
+  border: 1.5px solid #3b82f6;
+}
+
 .table-responsive {
   overflow-x: auto;
 }
+
 table {
   width: 100%;
   border-collapse: collapse;
   background: #fff;
   min-width: 680px;
 }
+
 thead tr {
   background: #f5f5f8;
   border-bottom: 2px solid #ddd;
 }
-th, td {
+
+th,
+td {
   text-align: center;
   padding: 13px 6px;
   font-size: 1rem;
 }
+
 tbody tr {
   border-bottom: 1px solid #f0f0f0;
   transition: background 0.18s;
 }
+
 tbody tr:hover {
   background: #f8fafc;
 }
 
-/* 상태 컬러 라벨 */
 .status {
   display: inline-block;
   min-width: 72px;
@@ -117,11 +153,22 @@ tbody tr:hover {
   color: #fff;
   letter-spacing: 1px;
 }
-.status.open { background: #fbbf24; color: #23240c; }
-.status.booked { background: #3b82f6; }
-.status.completed { background: #5e9c3f; }
 
-/* 버튼 스타일 */
+.status.pending {
+  background: #fbbf24;
+  color: #23240c;
+}
+
+.status.completed {
+  background: #3b82f6;
+  color: #fff;
+}
+
+.status.cancelled {
+  background: #e65a6b;
+  color: #fff;
+}
+
 .btn {
   margin: 0 2px;
   padding: 6px 13px;
@@ -135,23 +182,68 @@ tbody tr:hover {
   transition: background 0.18s, color 0.18s;
   box-shadow: 0 2px 8px #0001;
 }
-.btn.pay { background: #fde68a; color: #915800; }
-.btn.pay:hover:enabled { background: #fbbf24; color: #473300; }
-.btn.book { background: #3b82f6; color: #fff; }
-.btn.book:disabled { background: #b5d2fb; color: #fff; cursor: not-allowed; }
-.btn.book:hover:enabled { background: #2563eb; }
-.btn.rebook { background: #f59e42; color: #fff; }
-.btn.rebook:hover:enabled { background: #e7743a; }
-.btn.delete { background: #fae2e2; color: #b91c1c; }
-.btn.delete:hover { background: #f87171; color: #fff; }
-.btn.view { background: #f2f3f7; color: #222; }
-.btn.view:hover { background: #d1d5db; }
 
-/* 페이지네이션 */
+.btn.confirm {
+  background: #34d399;
+  color: #065f46;
+}
+
+.btn.confirm:disabled {
+  background: #bbf7d0;
+  color: #94a3b8;
+  cursor: not-allowed;
+}
+
+.btn.cancel {
+  background: #e0e7ef;
+  color: #b91c1c;
+}
+
+.btn.cancel:disabled {
+  background: #f4cccc;
+  color: #d8a6ab;
+  cursor: not-allowed;
+}
+
+.btn.delete {
+  background: #f3f4f6;
+  color: #9ca3af;
+}
+
+.btn.delete:hover {
+  background: #f87171;
+  color: #fff;
+}
+
+.btn.details img {
+  height: 22px;
+  width: 22px;
+  vertical-align: middle;
+}
+
+#sort-date-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 1.1em;
+  vertical-align: middle;
+  margin-left: 4px;
+  color: #3b82f6;
+  transition: color 0.15s;
+}
+
+#sort-date-btn:hover {
+  color: #222;
+}
+
 .pagination {
   margin-top: 28px;
   text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
 }
+
 .page-btn {
   background: #ececec;
   color: #222;
@@ -164,26 +256,12 @@ tbody tr:hover {
   cursor: pointer;
   transition: background 0.18s, color 0.18s;
 }
+
 .page-btn.active,
 .page-btn:hover {
   background: #3b82f6;
   color: #fff;
 }
-
-.status.pending { background: #fbbf24; color: #23240c; }
-.status.completed { background: #3b82f6; color: #fff; }
-.status.cancelled { background: #e65a6b; color: #fff; }
-.status-dot.pending { background: #fbbf24; }
-.status-dot.completed { background: #3b82f6; }
-.status-dot.cancelled { background: #e65a6b; }
-.btn.confirm { background: #34d399; color: #065f46; }
-.btn.confirm:disabled { background: #bbf7d0; color: #94a3b8; cursor: not-allowed; }
-.btn.cancel { background: #e0e7ef; color: #b91c1c; }
-.btn.cancel:disabled { background: #f4cccc; color: #d8a6ab; cursor: not-allowed; }
-.btn.delete { background: #f3f4f6; color: #9ca3af; }
-.btn.delete:hover { background: #f87171; color: #fff; }
-.btn.details img { height: 22px; width: 22px; vertical-align: middle; }
-
 
 footer {
   background-color: #ddd;
@@ -193,44 +271,83 @@ footer {
   font-size: 0.9em;
 }
 
-
-/* 반응형 (모바일) */
 @media (max-width: 700px) {
-  .container { padding: 10px 2vw 30px 2vw; }
-  header h1 { font-size: 1.25rem; }
-  .summary-row, .toolbar { flex-direction: column; align-items: stretch; gap: 8px; }
-  table, thead, tbody, th, td, tr { font-size: 0.93rem; }
-  th, td { padding: 10px 2px; }
-  .status { min-width: 46px; font-size: 0.88rem; }
-  .btn { padding: 5px 8px; font-size: 0.91rem; }
+  .container {
+    padding: 10px 2vw 30px 2vw;
+  }
+
+  header h1 {
+    font-size: 1.25rem;
+  }
+
+  .summary-row,
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    font-size: 0.93rem;
+  }
+
+  th,
+  td {
+    padding: 10px 2px;
+  }
+
+  .status {
+    min-width: 46px;
+    font-size: 0.88rem;
+  }
+
+  .btn {
+    padding: 5px 8px;
+    font-size: 0.91rem;
+  }
 }
 
-/* 모달 (상세 정보) 예시 - 실제 동작하려면 JS 필요, 미리 스타일만 정의 */
-.modal-backdrop {
-  display: none; /* JS로 display: flex로 전환 */
+#simple-modal {
+  display: none;
   position: fixed;
-  z-index: 50;
-  top: 0; left: 0; width: 100vw; height: 100vh;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
   background: #0006;
-  justify-content: center; align-items: center;
+  justify-content: center;
+  align-items: center;
 }
-.modal-box {
+
+#simple-modal>div {
   background: #fff;
   border-radius: 16px;
-  min-width: 320px; max-width: 95vw;
-  padding: 38px 34px 24px 34px;
-  box-shadow: 0 6px 32px #0002;
-  text-align: left;
+  min-width: 240px;
+  max-width: 80vw;
+  padding: 30px 26px 18px 26px;
+  box-shadow: 0 8px 36px #0003;
   position: relative;
+  text-align: center;
 }
-.modal-close {
+
+#modal-close {
   position: absolute;
-  right: 18px; top: 18px;
-  font-size: 1.2rem;
+  right: 14px;
+  top: 13px;
+  font-size: 1.1rem;
   background: none;
   border: none;
-  cursor: pointer;
   color: #888;
+  cursor: pointer;
   transition: color 0.15s;
 }
-.modal-close:hover { color: #c22; }
+
+#modal-close:hover {
+  color: #c22;
+}
