@@ -2,6 +2,11 @@
   box-sizing: border-box;
 }
 
+html, body {
+  height: 100%;
+  min-height: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -16,6 +21,9 @@ body {
   /* 중앙 정렬 */
   background-repeat: no-repeat;
   /* 반복 없음 */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .container {
@@ -25,6 +33,7 @@ body {
   border-radius: 18px;
   box-shadow: 0 6px 32px #0001;
   padding: 28px 22px 40px 22px;
+  flex: 1 0 auto;
 }
 
 header h1 {
@@ -267,50 +276,55 @@ footer {
   background-color: #ddd;
   text-align: center;
   padding: 10px;
-  margin-top: 20px;
   font-size: 0.9em;
+  flex-shrink: 0;
 }
 
 @media (max-width: 700px) {
   .container {
-    padding: 10px 2vw 30px 2vw;
+    padding: 10px 2vw 55px 2vw; /* 푸터 위에 공간 확보 */
   }
-
-  header h1 {
-    font-size: 1.25rem;
-  }
-
-  .summary-row,
-  .toolbar {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 8px;
-  }
-
-  table,
-  thead,
-  tbody,
-  th,
-  td,
-  tr {
+  table {
+    min-width: 410px;  /* 모바일에서 최소 너비 축소 */
     font-size: 0.93rem;
   }
-
-  th,
-  td {
-    padding: 10px 2px;
+  th, td {
+    padding: 8px 2px;
+    font-size: 0.92rem;
   }
-
   .status {
-    min-width: 46px;
-    font-size: 0.88rem;
+    min-width: 38px;
+    font-size: 0.82rem;
+    padding: 4px 0;
   }
-
   .btn {
-    padding: 5px 8px;
-    font-size: 0.91rem;
+    padding: 4px 6px;
+    font-size: 0.90rem;
+  }
+  footer {
+    padding: 16px 0 17px 0;
+    font-size: 0.96em;
+    border-top: 1px solid #ccc;
   }
 }
+
+@media (max-width: 480px) {
+  .container {
+    padding: 3vw 0 46px 0;
+  }
+  table {
+    min-width: 340px;
+    font-size: 0.86em;
+  }
+  header h1 {
+    font-size: 1.12rem;
+  }
+  footer {
+    padding: 13px 0 13px 0;
+    font-size: 0.92em;
+  }
+}
+
 
 #simple-modal {
   display: none;
