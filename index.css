@@ -73,18 +73,27 @@ main {
   border-radius: 20px;
   padding: 20px;
   margin-top: 20px;
+  margin-bottom: 20px;
   flex-wrap: wrap;
+  min-height: 200px;
 }
 
 .box img {
-  width: 120px;
+  width: 150px;
   height: auto;
 }
 
 .text h3 {
   color: #333;
   margin: 0;
+  font-size: 20px;
 }
+
+.text p {
+  color: white;
+  font-size: 16px;
+}
+
 
 .main-btn {
   display: inline-block;
@@ -99,7 +108,7 @@ main {
   text-align: center;
   margin-top: 10px;
   white-space: nowrap;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 /* RIGHT PANEL (슬라이더 포함) */
