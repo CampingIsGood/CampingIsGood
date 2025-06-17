@@ -100,7 +100,9 @@ function renderList() {
 
   // 후기 평균 별점 계산
   let avg = 0;
-  if (arr.length) avg = (arr.reduce((s,r)=>s+r.star,0)/arr.length).toFixed(1);
+  if (reviews.length) avg = (reviews.reduce((s,r)=>s+r.star,0)/reviews.length).toFixed(1);
+
+document.getElementById('hero-rating').textContent = avg || "-";
 
   document.getElementById('hero-rating').textContent = avg || "-";
 
@@ -132,11 +134,11 @@ function renderFormStars() {
 }
 renderFormStars();
 
-// 필터, 정렬, 검색 이벤트
-['filter-star','sort-order','review-search'].forEach(id=>{
+['filter-star','sort-order'].forEach(id=>{
   document.getElementById(id).oninput = renderList;
   document.getElementById(id).onchange = renderList;
 });
+
 
 document.getElementById('review-form').onsubmit = function(e){
   e.preventDefault();  // ❗❗ 새로고침 방지

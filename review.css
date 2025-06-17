@@ -14,7 +14,7 @@ body, html {
   position: relative;
   width: 100%;
   height: 320px;
-  background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+  background: url('images/background2.png') center/cover no-repeat;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -213,11 +213,12 @@ body, html {
   .review-rating { font-size: 2.2rem; }
   .review-camp { font-size: 1rem; }
   .review-address { font-size: 0.91rem; }
-  .review-main { padding: 12px 0 14px 0; margin-top: 0; }
+  .review-main { padding: 12px 0 44px 0; margin-top: 0; }
   .review-list-wrapper { height: 110px; border-radius: 7px; }
   .review-item { font-size: 0.89rem; padding: 13px 7px 8px 7px; border-radius: 6px;}
   .review-toolbar select { font-size: 0.93rem; padding: 5px 7px; }
   .review-form-stars { font-size: 1.09rem; }
+  .review-form { margin-top: 28px; }
   .review-form button { font-size: 0.97rem; padding: 8px 0; border-radius: 7px; }
   .review-form textarea { font-size: 0.97rem; padding: 8px 8px 7px 8px; border-radius: 7px;}
   .review-photo-label { font-size: 0.93rem; padding: 5px 8px; border-radius: 6px;}
