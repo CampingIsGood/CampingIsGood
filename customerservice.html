@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>고객센터</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f5;
+    }
+
+    /* 헤더 */
+    .header {
+      position: relative;
+      height: 200px;
+      background-image: url('2.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .header::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0,0,0,0.6); /* 오퍼시티 효과 */
+    }
+
+    .header h1 {
+      position: relative;
+      color: white;
+      text-align: center;
+      padding-top: 70px;
+      font-size: 2.5em;
+      z-index: 1;
+    }
+
+    /* 본문 레이아웃 */
+    .main {
+      display: flex;
+      background-color: #E76f51;
+      padding: 20px;
+      min-height: 650px;
+    }
+
+    .sidebar {
+      width: 200px;
+      border-right: 1px solid #ccc;
+    }
+
+    .sidebar button {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 10px;
+      border: none;
+      background-color: #f4f4f4;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .sidebar button:hover,
+    .sidebar button.active {
+      background-color: #E76f51;
+      color: white;
+    }
+
+    .content {
+      flex: 1;
+      padding: 20px;
+    }
+
+    /* 게시판/문의 영역 */
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* 문의 폼 스타일 */
+    form label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    form input, form textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    form button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #E76f51;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    form button:hover {
+      background-color: #E76f51;
+    }
+
+    /* 게시판 박스 공통 스타일 */
+  .board-box {
+    border: 1px solid #ccc;
+    padding: 25px;
+    background-color: #fafafa;
+    max-height: 1200px;
+    overflow-y: auto;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+  }
+
+  .post-list li {
+  cursor: pointer;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  list-style:none;
+}
+
+.post-list li:hover {
+  background-color: #f9f9f9;
+}
+
+.post-content {
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+  </style>
+</head>
+<body>
+<script>
+  const postData = {
+    post1: {
+      title: "캠핑이즈굿 정기점검 일정 공지",
+      body: "캠핑이즈굿은 운영진은 캠피잉즈굿에 대한 정기점검을 아래와 같이 실행하고자 하오니, 관리자 및 사용자분들께선 7월 31일 오후 11시 50분까진 작성 중이시던 게시글 및 수정 중이시던 북마크 저장을 꼭 마쳐주시길 바랍니다."
+    },
+    post2: {
+      title: "캠핑이즈굿 관리자 전용 안내문",
+      body: "상세 사항은 아래 링크를 참고하세요. https://www.sookmyung.ac.kr/kr/index.do"
+    },
+    post3: {
+      title: "캠핑이즈굿 사용자 전용 안내문",
+      body: "상세 사항은 아래 링크를 참고하세요. https://www.sookmyung.ac.kr/kr/index.do"
+    },
+    post4: {
+      title: "통계창 오류 공지",
+      body: "통계창 그래프가 자꾸 일그러지는 오류를 금일 14시 전면 수정하였으므로 캠핑장 관리자 여러분께선 해당 사항 참고하시어 캠핑이즈굿을 이용해주세요."
+    },
+    post5: {
+      title: "악성리뷰 대처 방안",
+      body: "캠핑장 운영주분들의 악성 리뷰에 대한 괴로움을 깊이 통감하고 있습니다. 근 1달간 들어온 악성 민원 관련 문의는 약 130건에 달하며, 캠핑이즈굿 운영진은 이가 큰 문제라고 판단. 3진아웃제롤 적용하기로 하였습니다. 악질적으로 타 캠핑장에 악의적인 리뷰를 남긴 경험이 3번 누적될시 캠핑이즈굿 운영진은 해당 악성 유저의 계정을 영구차단하기로 결정하였습니다."
+    },
+    post6: {
+      title: "1:1 문의 운영 시간대 공지",
+      body: "6월부터 고객센터 운영시간이 평일 오전 9시 ~ 오후 9시로 변경됩니다."
+    },
+    post7: {
+      title: "내 캠핑장 관리 오류 해결 공지",
+      body: "내 캠핑장 관리 중 이미지가 수정 업로드 되지 않는 오류를 금일 20시 경으로 수정을 마치었사오니 관리자 여러분께선 캠핑장 관리에 유의해주시길 바랍니다."
+    }
+  };
+
+  const inquiryData = {
+    inquiry1: { title: "페이지 접속 지연이 너무 심해요", body: "해당 웹페이지는 크롬에 최적화되어 있습니다. 접속 페이지를 변경해보세요.", date: "2025.06.10" },
+    inquiry2: { title: "통계창이 일그러지게 보여요", body: "해당 오류는 수정되었습니다.", date: "2025.06.11" },
+    inquiry3: { title: "그냥 페이지 디자인이 마음에 안 드는데요?", body: "고객님의 성원에 제대로 답하지 않아 죄송하나, 해당 웹페이지의 디자인은 임의로 변경, 및 수정이 어려운 점 양해 부탁드립니다.", date: "2025.06.12" },
+    inquiry4: { title: "회원가입할 때 주소 기입하는 게 안 되는데요", body: "많은 이용자분들께서 동시에 같은 기능을 이용하신 탓에 일시적으로 일어난 오류로 보입니다. 해당 사항 해결되었습니다.", date: "2025.06.11" },
+    inquiry5: { title: "경품 준다면서", body: "고객님의 경품이 누락된 것을 확인하였습니다. 정상 배송 진행하였습니다.", date: "2025.06.12" },
+    inquiry6: { title: "정기점검 전에 써놨던 글이 날아갔어요", body: "시스템 오류로 파악되었습니다. 깊은 사죄의 말 드립니다.", date: "2025.06.13" },
+    inquiry7: { title: "업데이트 후 임시저장함에 있던 글이 날아갔어요", body: "해당 게시글 복구 완료하였습니다. 캠핑이즈굿을 향한 지속적인 사랑에 가슴 깊이 감사드립니다.", date: "2025.06.17" },
+  };
+
+  const faqData = {
+    faq1: { title: "별점을 다시 매길 수 있나요?", body: "캠핑장 실방문시 24시간 후 다시 매길 수 있습니다." },
+    faq2: { title: "관리자 이미지 수정은 어떻게 하나요?", body: "관리자창에서 가능하나 끝까지 방법을 찾으실 수 없을 시 페이지 자체 문제일 가능성이 있으므로 사용자 문의창으로 개인 문의 주시길 바랍니다." },
+    faq3: { title: "비밀번호를 잊었어요.", body: "로그인 화면에서 비밀번호 찾기를 이용하세요." }
+  }
+
+  function showPost(postId) {
+    const contentBox = document.getElementById('postContent');
+    document.getElementById('postTitle').innerText = postData[postId].title;
+    document.getElementById('postBody').innerText = postData[postId].body;
+    contentBox.style.display = 'block';
+
+    // 목록 숨기기
+    document.querySelector('.post-list').style.display = 'none';
+  }
+
+  function hidePost() {
+    document.getElementById('postContent').style.display = 'none';
+    document.querySelector('.post-list').style.display = 'block';
+  }
+
+  function showItem(dataObj, id, contentBoxId, listSelector) {
+    const content = dataObj[id];
+    document.getElementById(`${contentBoxId}Title`).innerText = content.title;
+    document.getElementById(`${contentBoxId}Body`).innerText = content.body;
+    if (content.date) {
+      document.getElementById(`${contentBoxId}Date`).innerText = content.date;
+      document.getElementById(`${contentBoxId}Date`).style.display = 'block';
+    } else {
+      document.getElementById(`${contentBoxId}Date`).style.display = 'none';
+    }
+    document.getElementById(contentBoxId).style.display = 'block';
+    document.querySelector(listSelector).style.display = 'none';
+  }
+
+  function hideItem(contentBoxId, listSelector) {
+    document.getElementById(contentBoxId).style.display = 'none';
+    document.querySelector(listSelector).style.display = 'block';
+  }
+  
+</script>
+
+  <!-- 헤더 -->
+  <div class="header">
+    <h1>고객센터</h1>
+  </div>
+
+  <!-- 본문 -->
+  <div class="main">
+    <!-- 사이드바 -->
+    <div class="sidebar">
+      <button onclick="showTab('notice')" class="active">공지사항</button>
+      <button onclick="showTab('inquiry')">1:1 문의</button>
+      <button onclick="showTab('faq')">자주하는 질문</button>
+      <button onclick="showTab('userform')">사용자 문의</button>
+    </div>
+
+    <!-- 콘텐츠 영역 -->
+    <div class="content">
+<!-- 공지사항 -->
+<div id="notice" class="tab-content active">
+  <div class="board-box">
+    <ul class="post-list">
+      <li onclick="showPost('post1')"> 캠핑이즈굿 정기점검 일정 공지</li>
+      <li onclick="showPost('post2')"> 캠핑이즈굿 관리자 전용 안내문</li>
+      <li onclick="showPost('post3')"> 캠핑이즈굿 사용자 전용 안내문</li>
+      <li onclick="showPost('post4')"> 통계창 오류 공지</li>
+      <li onclick="showPost('post5')"> 악성리뷰 대처 방안</li>
+      <li onclick="showPost('post6')"> 1:1 문의 운영 시간대 공지 </li>
+      <li onclick="showPost('post7')"> 내 캠핑장 관리 오류 해결 공지</li>
+    </ul>
+
+    <!-- 게시글 내용 영역 -->
+    <div id="postContent" class="post-content" style="display:none; margin-top:20px;">
+      <h3 id="postTitle">제목</h3>
+      <p id="postBody">내용이 여기에 표시됩니다.</p>
+      <button onclick="hidePost()">목록으로</button>
+    </div>
+  </div>
+</div>
+
+<div id="inquiry" class="tab-content">
+  <div class="board-box">
+    <ul class="post-list">
+      <li onclick="showItem(inquiryData, 'inquiry1', 'inquiryContent', '#inquiry .post-list')">천선오 - 페이지 접속 지연이 너무 심해요</li>
+      <li onclick="showItem(inquiryData, 'inquiry2', 'inquiryContent', '#inquiry .post-list')">천의하 - 통계창이 일그러지게 보여요</li>
+      <li onclick="showItem(inquiryData, 'inquiry3', 'inquiryContent', '#inquiry .post-list')">유광인 - 그냥 페이지 디자인이 마음에 안 드는데요?</li>
+      <li onclick="showItem(inquiryData, 'inquiry4', 'inquiryContent', '#inquiry .post-list')">천호랑 - 회원가입할 때 주소 기입하는 게 안 되는데요 </li>
+      <li onclick="showItem(inquiryData, 'inquiry5', 'inquiryContent', '#inquiry .post-list')">백사연 - 경품 준다면서 </li>
+      <li onclick="showItem(inquiryData, 'inquiry6', 'inquiryContent', '#inquiry .post-list')">구양량 - 정기점검 전에 써놨던 글이 날아갔어요</li>
+      <li onclick="showItem(inquiryData, 'inquiry7', 'inquiryContent', '#inquiry .post-list')">천윤슬- 업데이트 후 임시저장함에 있던 글이 날아갔어요 </li>
+    </ul>
+
+    <div id="inquiryContent" class="post-content" style="display:none; margin-top:20px;">
+      <h3 id="inquiryContentTitle">제목</h3>
+      <small id="inquiryContentDate" style="color:gray;"></small>
+      <p id="inquiryContentBody">내용이 여기에 표시됩니다.</p>
+      <button onclick="hideItem('inquiryContent', '#inquiry .post-list')">목록으로</button>
+    </div>
+  </div>
+</div>
+
+<!-- 자주하는 질문 -->
+<div id="faq" class="tab-content">
+  <div class="board-box">
+    <ul class="post-list">
+      <li onclick="showItem(faqData, 'faq1', 'faqContent', '#faq .post-list')">별점을 다시 매길 수 있나요?</li>
+      <li onclick="showItem(faqData, 'faq2', 'faqContent', '#faq .post-list')">관리자 이미지 수정은 어떻게 하나요?</li>
+      <li onclick="showItem(faqData, 'faq3', 'faqContent', '#faq .post-list')">비밀번호를 잊었어요.</li>
+    </ul>
+
+    <div id="faqContent" class="post-content" style="display:none; margin-top:20px;">
+      <h3 id="faqContentTitle">제목</h3>
+      <small id="faqContentDate" style="color:gray; display:none;"></small>
+      <p id="faqContentBody">내용이 여기에 표시됩니다.</p>
+      <button onclick="hideItem('faqContent', '#faq .post-list')">목록으로</button>
+    </div>
+  </div>
+</div>
+
+<div id="userform" class="tab-content">
+  <div class="board-box">
+  <h2>사용자 문의</h2>
+  <form>
+    <label for="username">이름</label>
+    <input type="text" id="username" name="username" required>
+
+    <label for="useremail">이메일</label>
+    <input type="email" id="useremail" name="useremail" required>
+
+    <label for="usermsg">문의 내용</label>
+    <textarea id="usermsg" name="usermsg" rows="5" required></textarea>
+    <button type="submit">보내기</button>
+  </form>
+  </div>
+</div>
+
+  </div>
+
+  <!-- JS 탭 전환 기능 -->
+  <script>
+    function showTab(tabId) {
+      const tabs = document.querySelectorAll('.tab-content');
+      tabs.forEach(tab => tab.classList.remove('active'));
+
+      document.getElementById(tabId).classList.add('active');
+
+      const buttons = document.querySelectorAll('.sidebar button');
+      buttons.forEach(btn => btn.classList.remove('active'));
+
+      event.target.classList.add('active');
+    }
+  </script>
+
+</body>
+</html>
