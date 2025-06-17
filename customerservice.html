@@ -139,6 +139,26 @@
   border: 1px solid #ddd;
   border-radius: 5px;
 }
+
+.sidebar .google-form-btn {
+  display: block;
+  margin-top: 30px;
+  padding: 12px 20px;
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.sidebar .google-form-btn:hover {
+  background-color: #E76f51;
+}
+
   </style>
 </head>
 <body>
@@ -195,7 +215,8 @@
     document.getElementById('postTitle').innerText = postData[postId].title;
     document.getElementById('postBody').innerText = postData[postId].body;
     contentBox.style.display = 'block';
-    
+
+    // 목록 숨기기
     document.querySelector('.post-list').style.display = 'none';
   }
 
@@ -238,8 +259,9 @@
       <button onclick="showTab('inquiry')">1:1 문의</button>
       <button onclick="showTab('faq')">자주하는 질문</button>
       <button onclick="showTab('userform')">사용자 문의</button>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScJsI_x6VnZ_CbhVTc219jiNuTR8iieRWVHSlrha9Xw_N-Drg/viewform?usp=header" target="_blank" class="google-form-btn">단체 예약 문의</a>
     </div>
-
+  
     <!-- 콘텐츠 영역 -->
     <div class="content">
 <!-- 공지사항 -->
