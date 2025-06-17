@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>상세 후기</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="review.css">
+</head>
+<body>
+<div class="review-bg">
+  <div class="review-hero">
+    <div class="review-rating" id="hero-rating">4.3</div>
+    <div class="review-camp">북한산 와일드 캠핑장</div>
+    <div class="review-address">서울시 종로구 13길 130-2</div>
+  </div>
+<div class="review-main">
+    <div class="review-toolbar">
+        <select id="filter-star">
+            <option value="all">별점 전체</option>
+            <option value="5">⭐️ 5점만</option>
+            <option value="4">⭐️ 4점만</option>
+            <option value="3">⭐️ 3점만</option>
+            <option value="2">⭐️ 2점만</option>
+            <option value="1">⭐️ 1점만</option>
+        </select>
+        <select id="sort-order">
+            <option value="latest">최신순</option>
+            <option value="oldest">오래된순</option>
+            <option value="highstar">별점높은순</option>
+            <option value="lowstar">별점낮은순</option>
+        </select>
+    </div>
+
+    <div class="review-list-wrapper">
+      <div class="review-list" id="review-list">
+        <!-- 후기 아이템들이 JS에서 렌더링됨 -->
+      </div>
+    </div>
+    <form class="review-form" id="review-form" autocomplete="off">
+      <div class="review-form-row">
+        <div class="review-form-stars" id="form-stars">
+          <!-- 별 5개 생성 -->
+        </div>
+        <label class="review-photo-label">
+          📷 사진첨부
+          <input type="file" id="photo-upload" accept="image/*" disabled>
+        </label>
+      </div>
+      <textarea placeholder="여기에 후기를 남겨보세요!" maxlength="300" required></textarea>
+      <button type="submit">후기 등록</button>
+    </form>
+  </div>
+</div>
+<script>
+const initialReviews = [
+  { star: 5, text: "캠핑장 너무 예쁘고 시설이 깨끗해요! 아이와 다시 오고 싶어요.", photo: false, date: "2024-06-12 10:11" },
+  { star: 2, text: "냄새가 좀 났어요.. 화장실 청결 개선 바랍니다.", photo: false, date: "2024-06-11 22:18" },
+  { star: 4, text: "아침에 새소리 들으면서 산책할 수 있어서 좋았어요.", photo: false, date: "2024-06-11 20:55" },
+  { star: 5, text: "여기 진짜 추천드립니다! 다시 가고 싶어요.", photo: true, date: "2024-06-10 21:31" },
+  { star: 3, text: "무난무난. 가격만 조금 더 싸면 좋을듯.", photo: false, date: "2024-06-09 19:20" },
+  { star: 1, text: "여기 곰이 진짜 나옴. 무서워요.", photo: false, date: "2024-06-09 18:07" },
+  { star: 5, text: "친절하고 뷰도 최고! 물놀이도 할 수 있음.", photo: true, date: "2024-06-08 13:14" },
+  { star: 4, text: "밤에 별이 잘 보여서 힐링 제대로!", photo: false, date: "2024-06-08 07:59" },
+  { star: 3, text: "주차장이 멀어서 아쉬움.", photo: false, date: "2024-06-06 21:13" },
+  { star: 5, text: "최고! 가족여행으로 강추입니다.", photo: false, date: "2024-06-06 14:45" },
+  { star: 2, text: "벌레가 많아서 밤에 힘들었어요.", photo: false, date: "2024-06-05 23:03" },
+  { star: 4, text: "반려견 동반 가능해서 너무 편해요.", photo: true, date: "2024-06-05 17:52" }
+];
+let reviews = [...initialReviews];
+
+function renderStars(n) {
+  let stars = '';
+  for (let i = 1; i <= 5; i++) {
+    stars += `<span class="star${i <= n ? ' filled' : ''}">★</span>`;
+  }
+  return stars;
+}
+
+
+
+// 후기 리스트 렌더링
+function renderList() {
+  const filterStar = document.getElementById('filter-star').value;
+  const sortOrder = document.getElementById('sort-order').value;
+  let arr = reviews.slice();
+
+  // 필터
+  if (filterStar !== "all") {
+  arr = arr.filter(r => r.star === Number(filterStar));
+}
+
+  // 정렬
+  arr.sort((a, b) => {
+    if(sortOrder === "latest") return b.date.localeCompare(a.date);
+    if(sortOrder === "oldest") return a.date.localeCompare(b.date);
+    if(sortOrder === "highstar") return b.star - a.star || b.date.localeCompare(a.date);
+    if(sortOrder === "lowstar") return a.star - b.star || b.date.localeCompare(a.date);
+    return 0;
+  });
+
+  // 후기 평균 별점 계산
+  let avg = 0;
+  if (arr.length) avg = (arr.reduce((s,r)=>s+r.star,0)/arr.length).toFixed(1);
+
+  document.getElementById('hero-rating').textContent = avg || "-";
+
+  // 렌더링
+  document.getElementById('review-list').innerHTML = arr.map(r => `
+    <div class="review-item">
+      <span class="review-stars">${renderStars(r.star)}</span>
+      <span class="review-item-text">${r.text}
+      ${r.photo?'<span class="review-photo-icon" title="사진첨부">📷</span>':''}
+      </span>
+    </div>
+  `).join('') || `<div style="color:#aaa; text-align:center; margin-top:55px;">후기가 없습니다.</div>`;
+}
+
+// 별점 선택 렌더링 및 처리
+let formStar = 5;
+function renderFormStars() {
+  let dom = "";
+  for(let i=1; i<=5; i++){
+    dom += `<span class="star${i>formStar?' inactive':''}" data-val="${i}">★</span>`;
+  }
+  document.getElementById('form-stars').innerHTML = dom;
+  document.querySelectorAll('#form-stars .star').forEach(star => {
+    star.onclick = () => {
+      formStar = Number(star.getAttribute('data-val'));
+      renderFormStars();
+    }
+  });
+}
+renderFormStars();
+
+// 필터, 정렬, 검색 이벤트
+['filter-star','sort-order','review-search'].forEach(id=>{
+  document.getElementById(id).oninput = renderList;
+  document.getElementById(id).onchange = renderList;
+});
+
+document.getElementById('review-form').onsubmit = function(e){
+  e.preventDefault();  // ❗❗ 새로고침 방지
+
+  const txt = this.querySelector('textarea').value.trim();
+  if (!txt) return;
+
+  const hasPhoto = false;
+  const d = new Date();
+  const dateStr = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+  reviews.unshift({star: formStar, text: txt, photo: hasPhoto, date: dateStr});
+  this.querySelector('textarea').value = '';
+  renderList();
+
+  setTimeout(() => {
+    document.querySelector('.review-list-wrapper').scrollTop = 0;
+  }, 30);
+};
+
+renderList();
+
+// 사진첨부 버튼 안내만
+document.getElementById('photo-upload').disabled = false;
+document.getElementById('photo-upload').addEventListener('change', function(){
+  alert("사진 저장/업로드 기능은 구현되어 있지 않습니다.");
+  this.value = "";
+});
+</script>
+</body>
+</html>
