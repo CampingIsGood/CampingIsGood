@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mypage</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f5f5f5;
+      color: white;
+    }
+
+    header {
+      position: relative;
+      height: 250px;
+      background-image: url('3.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+
+    header::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    .header-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      z-index: 1;
+    }
+
+    .header-content h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+    }
+
+    .header-content p {
+      font-size: 16px;
+    }
+
+.content {
+  display: flex;
+  padding: 40px;
+  background-color: #E76f51;
+  gap: 20px; /* 좌우 간격 */
+}
+
+.left, .right {
+  flex: 1;
+  margin: 10px 0;
+}
+
+    .section-title {
+      font-size: 24px;
+      margin-bottom: 20px;
+      font-weight:bold;
+    }
+
+    .box {
+      background-color: white;
+      border-radius: 12px;
+      padding: 20px;
+      height: 400px;
+      overflow-y: auto;
+      color: #333;
+    }
+
+    .camping-item {
+      display: flex;
+      margin-bottom: 15px;
+    }
+
+    .camping-item img {
+      width: 160px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-right: 15px;
+    }
+
+    .review {
+      margin-bottom: 15px;
+    }
+
+    .review-title {
+      font-weight: bold;
+    }
+
+    .review-content {
+      margin-top: 5px;
+    }
+.detail-link {
+  font-size: 13px;
+  color: #999;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 5px;
+}
+
+.detail-link:hover {
+  color: #777;
+  text-decoration: underline;
+}
+
+.review-images {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+.review-images img {
+  width: 160px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0; /* 가로 스크롤 시 크기 유지 */
+}
+.review-title, .camping-item h3 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <h1>Mypage</h1>
+      <p>캠핑이즈 굿과 함께</p>
+    </div>
+  </header>
+
+  <div class="content">
+    <div class="left">
+      <div class="section-title">내가 찜한 캠핑장</div>
+      <div class="box">
+        <div class="camping-item">
+          <img src="4.jpg" alt="캠핑장 사진" />
+          <div>
+            <h3>화산 글램핑</h3>
+            <p>경기도 가평구 64길 15</p>
+            <a href="anywhere.html" class="detail-link">상세 페이지로</a>
+          </div>
+        </div>
+        <div class="camping-item">
+          <img src="5.jpg" alt="캠핑장 사진" />
+          <div>
+            <h3>별과 바다와 나 캠핑장</h3>
+            <p>서울시 성동구 54길 17-2</p>
+    <a href="anywhere2.html" class="detail-link">상세 페이지로</a>
+          </div>
+        </div>
+        <div class="camping-item">
+          <img src="6.jpg" alt="캠핑장 사진" />
+          <div>
+            <h3>백일몽 캠핑장</h3>
+            <p>경기도 하남시 444길 4</p>
+            <a href="anywhere.html3" class="detail-link">상세 페이지로</a>
+          </div>
+        </div>
+        <div class="camping-item">
+          <img src="7.jpg" alt="캠핑장 사진" />
+          <div>
+            <h3>럭셔리 캠핑장</h3>
+            <p>부산 15길 09동 108호</p>
+            <a href="anywhere.html4" class="detail-link">상세 페이지로</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="right">
+        <div class="section-title">나의 후기</div>
+<div class="box">
+  <div class="review">
+    <div class="review-header">
+      <span class="review-title">럭셔리 호수 캠핑장</span>
+      <span class="review-location">경기도 하남시 학암로 15길</span>
+    </div>
+    <div class="review-rating">★★★☆☆</div>
+    <div class="review-images">
+      <img src="8.jpg" alt="캠핑장 이미지 1" />
+      <img src="9.jpg" alt="캠핑장 이미지 2" />
+      <img src="10.jpg" alt="캠핑장 이미지 3" />
+    </div>
+    <div class="review-texts">
+      <p>캠핑장도 잘 꾸며져 있고 너무너무 좋았습니다!</p>
+      <p>다만 화장실이랑 데크가 너무 멀어서 불편하기도 했고 식수대가 캠핑장 입구?쪽에</p>
+      <p>있어서 묵으면서 고생 꽤나 했어요.</p>
+    </div>
+</div>
+
+       <div class="review">
+      <div class="review-header">
+        <span class="review-title">재관국 글램핑</span>
+        <span class="review-location">경기도 양평군</span>
+      </div>
+      <div class="review-rating">★★★★☆</div>
+      <div class="review-images">
+        <img src="4.jpg" alt="캠핑장 이미지 4" />
+        <img src="5.jpg" alt="캠핑장 이미지 5" />
+      </div>
+      <div class="review-texts">
+        <p>원래 공무원 분들이 쓰던 곳이라 그런가 정리도 잘 되어 있고 좋네요!</p>
+        <p>편의점이나 해변이랑도 가까워서 참 좋습니다.</p>
+      </div>
+
+    </div>
+
+    <div class="review">
+      <div class="review-header">
+        <span class="review-title">백일몽 캠핑장</span>
+        <span class="review-location">경남 창녕군</span>
+      </div>
+      <div class="review-rating">★☆☆☆☆</div>
+      <div class="review-images">
+        <img src="1.jpg" alt="캠핑장 이미지 6" />
+        <img src="2.jpg" alt="캠핑장 이미지 6" />
+        <img src="3.jpg" alt="캠핑장 이미지 6" />
+      </div>
+      <div class="review-texts">
+        <p>다 좋은데 자꾸 귀신??ㅠㅠㅠ이 나온다는 소문이 있네요.</p>
+        <p>너무 흉흉합니다....</p>
+      </div>
+  </div>
+  </div>
+
+  <!-- 다른 후기들 추가 가능 -->
+</div>
+  </div>
+</body>
+</html>
