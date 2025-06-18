@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>후기 관리하기</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+    }
+
+    body {
+      background-image: url('14.jpg'); /* 배경 유지 */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+    }
+
+    .form-wrapper {
+      background: rgba(255, 255, 255, 0.95);
+      width: 550px;
+      height: 100vh;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+.camp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+    .camp-section {
+      border: none;
+      border-radius: 0;
+      padding: 0;
+      background-color: transparent;
+      margin-bottom:50px;
+    }
+
+    .camp-name {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .camp-layout {
+      display: flex;
+      gap: 20px;
+      align-items:flex-start;
+    }
+
+    .camp-image {
+      width: 220px;
+      height: 150px;
+      border-radius: 12px;
+      object-fit: cover;
+    }
+
+    .review-box {
+      flex: 1;
+      border: none;
+      border-radius: 10px;
+      padding: 15px;
+      height: 150px;
+      overflow-y: auto;
+      background-color: transparent;
+      font-size: 14px;
+      color: #333;
+    }
+
+    .camp-address {
+        margin-bottom:10px;
+      font-size: 12px;
+      color: #666;
+    }
+
+    .review {
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .review:last-child {
+      border-bottom: none;
+    }
+
+    .review-area {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+    .delete-btn {
+        all:unset;
+        color: black;
+        text-decoration:underline;
+        vertical-align:baseline;
+        cursor: pointer;
+        font-size: 13px;
+        margin-left: 8px;}
+        
+    .delete-btn:hover {
+        text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-wrapper">
+    <h2>후기 관리하기</h2>
+
+<div class="camp-section">
+  <div class="camp-header">
+    <div class="camp-name">청량 캠핑장</div>
+    <div class="camp-address">경기도 가평구 64길 15</div>
+  </div>
+  <div class="camp-layout">
+    <img src="14.jpg" alt="캠핑장 이미지" class="camp-image">
+    <div class="review-box">
+  <div class="review">
+    장수풍뎅이 포획 활동 너무너무 재밌어요. 구성도 알차고, 참가비도 싸고요. 저희 애들도 엄청 좋아하더라고요. 아이 있는 집은 반드시 가보세요.
+    <button class="delete-btn" onclick="deleteReview(this)">삭제</button>
+  </div>
+  <div class="review">
+    밤 풍경이 정말 운치있습니다. 캠핑장 측에서 곳곳에 걸어둔 램프 분위기가 장난 아닙니다.
+    <button class="delete-btn" onclick="deleteReview(this)">삭제</button>
+  </div>
+  <div class="review">
+    샤워시설 깨끗했고 근처 편의점이나 마트 입지도 나쁘지 않아요. 강추!
+    <button class="delete-btn" onclick="deleteReview(this)">삭제</button>
+  </div>
+</div>
+</div>
+
+<hr>
+
+<div class="camp-section">
+  <div class="camp-header">
+    <div class="camp-name">청량 캠핑장</div>
+    <div class="camp-address">울산 가룡산 꼭대기</div>
+  </div>
+  <div class="camp-layout">
+    <img src="15.jpg" alt="캠핑장 이미지" class="camp-image">
+    <div class="review-box">
+  <div class="review">
+    남매가 운영하는 것 같은데, 자꾸 싸워서 좀... 불안하긴 하더라고요. 시설은 좋았습니다.
+    <button class="delete-btn" onclick="deleteReview(this)">삭제</button>
+  </div>
+  <div class="review">
+    여기 형?분이 고기를 기가막히게 구우는데 가보는 분은 꼭! 고기는 주인분께 구워달라고 하세요 안 하면 평생 후회합니다.
+    <button class="delete-btn" onclick="deleteReview(this)">삭제</button>
+  </div>
+</div>
+</div>
+
+<hr>
+
+<div class="camp-section">
+  <div class="camp-header">
+    <div class="camp-name">럭셔리 호수 캠핑장</div>
+    <div class="camp-address">경기도 하남시 학암로 15길</div>
+  </div>
+  <div class="camp-layout">
+    <img src="9.jpg" alt="캠핑장 이미지" class="camp-image">
+    <div class="review-box">
+  <div class="review">
+    캠핑장도 잘 꾸며져 있고 너무너무 좋았습니다! 다만 화장실이랑 데크가 너무 멀어서 불편하기도 했고, 식수대가 캠핑장 입구?쪽에 있어서 묵으면서 고생 꽤나 했어요
+    <button class="delete-btn" onclick="deleteReview(this)">삭제</button>
+  </div>
+  <div class="review">
+    시설이 진짜 좋아요. 안쪽에 벌레가 하나도 없다니까?
+    <button class="delete-btn" onclic경k="deleteReview(this)">삭제</button>
+  </div>
+  <div class="review">
+    내부 매점에서 파는 물건이 좀...많이 비싼 감이 있긴 해요.
+    <button class="delete-btn" onclick="deleteReview(this)">삭제</button>
+  </div>
+    <div class="review">
+    애들 사탕도 나눠주시고 주인분들이 마음씨가 차~암 고우세요.
+    <button class="delete-btn" onclick="deleteReview(this)">삭제</button>
+  </div>
+</div>
+</div>
+
+<hr>
+
+<div class="camp-section">
+  <div class="camp-header">
+    <div class="camp-name">백일몽 캠핑장</div>
+    <div class="camp-address">부산 444길</div>
+  </div>
+  <div class="camp-layout">
+    <img src="4.jpg" alt="캠핑장 이미지" class="camp-image">
+    <div class="review-box">
+  <div class="review">
+    여기 귀신 나와요ㅠㅠㅠㅠ싸다고 가시면 안 됩니다 진짜
+    <button class="delete-btn" onclick="deleteReview(this)">삭제</button>
+  </div>
+  <div class="review">
+    여기가 그 10년 전에 사람 실종된 거기라매요?
+    <button class="delete-btn" onclick="deleteReview(this)">삭제</button>
+  </div>
+  <div class="review">
+    시설 자체는 클린해서 좋은데 좀 춥달까...
+    <button class="delete-btn" onclick="deleteReview(this)">삭제</button>
+  </div>
+</div>
+</div>
+
+    <script>
+  function deleteReview(button) {
+    const reviewDiv = button.parentElement;
+    if (confirm("이 후기를 삭제하시겠습니까?")) {
+      reviewDiv.remove();
+    }
+  }
+</script>
+
+  </div>
+</body>
+</html>
