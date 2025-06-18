@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>캠핑장 상세2</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero {
+      height: 70vh;
+      background-image: url('images/5.jpg');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      flex-direction: column;
+    }
+
+    .camp-name {
+      font-size: 48px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .camp-address {
+      font-size: 18px;
+      color: #eee;
+    }
+
+    .description-section {
+      background-color: #ffc0b0;
+      height: 40vh;
+      padding: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .camp-description {
+        background-color:white;
+        border-radius:12px;
+      max-width: 500px;
+      height:180px;
+      padding:20px;
+      text-align: left;
+      font-size: 16px;
+      flex-direction:column;
+      gap:12px;
+      color: #333;
+      line-height: 1.6;
+      overflow-y:auto;
+      display:flex;
+      box-shadow:0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .camp-description div {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 8px;
+}
+
+    .actions {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .icon-btn {
+      background: none;
+      border: none;
+      font-size: 32px;
+      cursor: pointer;
+      color: white;
+    }
+
+    .book-btn {
+      background-color: #e76f51;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      padding: 14px 28px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .book-btn:hover {
+      background-color: #c4593f;
+    }
+
+    .icon-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.icon-img {
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.icon-img:hover {
+  transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .hero {
+    height: 50vh;
+    padding: 20px;
+  }
+
+  .camp-name {
+    font-size: 28px;
+  }
+
+  .camp-address {
+    font-size: 14px;
+  }
+
+  .description-section {
+    flex-direction: column;
+    height: auto;
+    padding: 20px;
+  }
+
+  .camp-description {
+    width: 100%;
+    max-width: none;
+    height: auto;
+    padding: 20px;
+    font-size: 14px;
+  }
+
+  .actions {
+    position: static;
+    margin-top: 20px;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .icon-buttons {
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+  .icon-img {
+    width: 32px;
+    height: 32px;
+  }
+
+  .book-btn {
+    padding: 12px 24px;
+    font-size: 13px;
+  }
+}
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div class="camp-name">별과 바다와 나 캠핑장</div>
+    <div class="camp-address">서울 성동구 54길 17-2</div>
+  </div>
+
+  <div class="description-section">
+    <div class="camp-description">
+      시집과 아름다운 별들과 함께 즐거운 시간을!
+      <div>체크인: 오후 3시</div>
+    <div>체크아웃: 오전 11시</div>
+    <div>운영기간: 가을, 겨울</div>
+    <div>운영일: 주말</div>
+    <div>예약방법: 온라인실시간 예약 및 전화 예약</div>
+    <div>주변이용가능시설:산책로, 마트, 낚시터, 간이 놀이터</div>
+    </div>
+
+    <div class="actions">
+  <div class="icon-buttons">
+        <img src="images/17.png" alt="찜하기" class="icon-img" onclick="alert('찜 되었습니다!')" />
+        <img src="images/18.png" alt="후기보기" class="icon-img" onclick="location.href='review.html'" />
+      <button class="book-btn" onclick="location.href='reserve.html'">Book now</button>
+    </div>
+  </div>
+
+</body>
+</html>
