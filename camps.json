@@ -9,14 +9,13 @@
     "city": "성북구",
     "theme": ["가족", "자연", "글램핑"],
     "facility": ["전기", "화장실", "마트/편의점"],
-    "link": "rose.html",
+    "link": "detail.html",
     "desc": "도심 속 산골목에서 자연을 만나는 힐링 캠핑!",
     "season": "연중무휴",
     "price": "1박 40,000원~",
     "phone": "010-1111-1111",
     "rating": 4.7,
-    "review": 32,
-    "link": "detail.html"
+    "review": 32
   },
   {
     "name": "초록나무 캠핑장",
