@@ -120,7 +120,18 @@
         padding: 20px;
         border-radius: 0;
         box-shadow: none;}
-        
+      
+      .input-with-unit {
+        gap:0;
+        display:flex;
+        align-items:center;
+        gap:6px;
+      }
+
+      .unit {
+        margin-left:2px;
+        font-size:13px;
+      }
       h2 {
         font-size: 20px;}
         
@@ -192,22 +203,34 @@
 
       <div class="form-group">
         <label for="priceRegular">정상가 *</label>
+        <div class="input-with-unit">
         <input type="number" id="priceRegular" name="priceRegular" required />
+        <span class="unit">원</span>
+      </div>
       </div>
 
       <div class="form-group">
         <label for="priceSale">판매가 *</label>
+        <div class="input-with-unit">
         <input type="number" id="priceSale" name="priceSale" required />
+        <span class="unit">원</span>
+      </div>
       </div>
 
       <div class="form-group">
         <label for="discountRate">할인률 (%)</label>
+        <div class="input-with-unit">
         <input type="number" id="discountRate" name="discountRate" />
+        <span class="unit">%</span>
+      </div>
       </div>
 
       <div class="form-group">
         <label for="commission">수수료 (%)</label>
+        <div class="input-with-unit">
         <input type="number" id="commission" name="commission" />
+        <span class="unit">%</span>
+      </div>
       </div>
 
       <div class="form-group">
