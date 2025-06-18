@@ -72,7 +72,7 @@
         <div class="reserve-times">
           <div class="time-title">시간 선택</div>
           <div class="time-date" id="selected-date">날짜를 먼저 선택하세요</div>
-
+        
           <div class="time-list">
             <div class="time-slot">09:00</div>
             <div class="time-slot">09:30</div>
@@ -81,10 +81,13 @@
             <div class="time-slot">11:00</div>
             <div class="time-slot">11:30</div>
           </div>
-
-          <form action="complete.html" method="get">
+        
+          <form action="complete.html" method="get" id="reserve-form">
+            <input type="hidden" name="date" id="input-date">
+            <input type="hidden" name="time" id="input-time">
             <button type="submit" class="btn-reserve">예약하기</button>
           </form>
+        
         </div>
       </div>
     </div>
@@ -133,6 +136,8 @@
         const selDate = new Date(viewYear, viewMonth, td.textContent);
         const wk = ['일','월','화','수','목','금','토'][selDate.getDay()];
         dateLbl.textContent = `${viewMonth+1}월 ${td.textContent}일 ${wk}요일`;
+
+        document.getElementById('input-date').value = `${viewMonth+1}월 ${td.textContent}일 ${wk}요일`;
       };
     });
   }
@@ -149,8 +154,19 @@
     div.onclick = ()=>{
       document.querySelectorAll('.time-slot').forEach(el=>el.classList.remove('selected'));
       div.classList.add('selected');
+
+      document.getElementById('input-time').value = div.textContent;
     };
   });
+  document.getElementById('reserve-form').onsubmit = function (e) {
+      if (!document.getElementById('input-date').value || !document.getElementById('input-time').value) {
+        alert('날짜와 시간을 모두 선택해주세요!');
+        e.preventDefault();
+      }
+  };
+
+
+  
 
   /* 최초 호출 */
   renderCalendar(viewYear, viewMonth);

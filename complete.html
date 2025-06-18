@@ -22,7 +22,7 @@
       background: #fff;
       border-radius: 36px;
       box-shadow: 0 6px 32px #0003;
-      max-width: 700px;
+      max-width: 800px;
       width: 97vw;
       margin-top: 72px;
       text-align: center;
@@ -68,7 +68,9 @@
 
     @media (max-width: 600px) {
       .complete-card {
-        padding: 30px 8vw 40px 8vw;
+        width: 92vw;
+        max-width: 95vw;
+        padding: 25px 4vw 30px 4vw;
       }
 
       .complete-card h1 {
@@ -88,13 +90,31 @@
       <div class="complete-card">
         <h1>로즈마리 산골목 캠핑장</h1>
         <p>서울시 성북구 13길 20-3</p>
-        <div class="user">User 님 6월 27일 11:00 시 예약 완료</div>
+        <div class="user" id="reserve-info"></div>
         <a href="index.html" class="home-btn">
           <button>홈으로 돌아가기</button>
         </a>
       </div>
     </div>
   </div>
+  <script>
+    function getQuery(name) {
+      const params = new URLSearchParams(location.search);
+      return params.get(name);
+    }
+
+    const date = getQuery('date');
+    const time = getQuery('time');
+    const user = "User"; // 로그인 시스템 구현 안됨, user 로 고정
+
+    if (date && time) {
+      document.getElementById('reserve-info').textContent =
+        `${user} 님 ${date} ${time} 예약 완료`;
+    } else {
+      document.getElementById('reserve-info').textContent = "예약 정보가 없습니다.";
+    }
+  </script>
+
 </body>
 
 </html>
