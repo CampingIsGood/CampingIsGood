@@ -144,3 +144,24 @@ body, html {
 .camp-detail .detail-link:hover {
     background: #ff815b;
 }
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    height: 100vh;
+    min-height: 100vh;
+  }
+  .map-area {
+    width: 100vw;
+    height: 40vh;         
+    min-height: 220px;
+    max-height: 44vh;
+  }
+  #map {
+    width: 100vw !important;
+    height: 40vh !important;
+    min-height: 220px;
+    max-height: 44vh;
+    display: block;
+  }
+}
