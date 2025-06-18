@@ -133,6 +133,25 @@
   font-weight: bold;
   color: #333;
 }
+.home-link {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  color: white;
+  text-decoration: none;
+  z-index: 2;
+  opacity: 0.8;
+  background-color: rgba(0,0,0,0.3);
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.home-link:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
 
 @media (max-width: 768px) {
   .content {
@@ -206,7 +225,9 @@
   </style>
 </head>
 <body>
+
   <header>
+    <a href="index.html" class="home-link">Home</a>
     <div class="header-content">
       <h1>Mypage</h1>
       <p>캠핑이즈 굿과 함께</p>
