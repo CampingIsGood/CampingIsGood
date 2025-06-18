@@ -17,7 +17,7 @@
     }
 
     body {
-      background-image: url('1.jpg');
+      background-image: url('images/1.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -118,18 +118,81 @@
     }
 
     .address-group label {
-        width: 130px; /* 기존 레이블 너비 유지 */
+        width: 130px;
         font-weight: bold;
     }
 
     .address-group input {
         flex: 1;
-        margin-right: 10px; /* 버튼과 간격 */
+        margin-right: 10px;
         padding: 10px;
         border: 1px solid #ccc;
         border-radius: 5px;
         box-sizing: border-box;
     }
+    @media (max-width: 768px) {
+  .form-wrapper {
+    width: 100%;
+    height: auto;
+    padding: 20px;
+    box-shadow: none;}
+
+  h2 {
+    font-size: 20px;
+    margin-bottom: 20px;}
+
+  .form-group {
+    flex-direction: column;
+    align-items: flex-start;}
+
+  .form-group label {
+    width: 100%;
+    margin-bottom: 5px;
+    font-size: 14px;}
+
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    font-size: 14px;}
+
+  .gender-box {
+    flex-direction: row;
+    gap: 10px;
+    font-size: 14px;}
+
+  .address-group {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;}
+
+  .address-group label {
+    width: 100%;
+    margin-bottom: 5px;}
+
+  .address-group input {
+    width: 100%;
+    margin: 0;}
+
+  .address-group button {
+    width: 100%;
+    margin-top: 10px;}
+
+  .terms {
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 14px;}
+
+  .terms label {
+    margin-top: 5px;}
+
+  button {
+    width: 100%;
+    font-size: 15px;
+    padding: 12px;}
+
+  .button-wrapper {
+    margin-top: 20px;}
+}
 
   </style>
 </head>
