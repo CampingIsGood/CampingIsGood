@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>내 캠핑장 등록하기</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+    }
+
+    body {
+      background-image: url('12.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .form-wrapper {
+      background: rgba(255, 255, 255, 0.95);
+      width: 550px;
+      height: 100vh;
+      box-sizing: border-box;
+      padding: 40px;
+      border-radius: 0px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 5px;
+    }
+
+    .sub-note {
+      text-align: center;
+      font-size: 12px;
+      color: #666;
+      margin-bottom: 25px;
+    }
+
+    .form-group {
+      display: flex;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .form-group label {
+      width: 130px;
+      font-weight: bold;
+    }
+
+    .form-group input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+
+    .address-group {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 15px;
+    }
+
+    .address-group label {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .address-group input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+        width: 200px;
+        padding: 12px;
+        background-color: #E76f51;
+        color: white;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+        display: block;
+        margin: 0 auto;
+    }
+
+
+    button:hover {
+      background-color: #E76f51;
+    }
+
+    .section-divider {
+      margin: 30px 0 20px;
+      border-top: 1px solid #ccc;
+      padding-top: 15px;
+      font-weight: bold;
+    }
+
+    .button-wrapper {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .price-section-title {
+  font-weight: bold;
+  font-size: 16px;
+  margin-top: 30px;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.section-line {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+
+  </style>
+</head>
+<body>
+
+  <div class="form-wrapper">
+    <h2>내 캠핑장 등록하기</h2>
+    <div class="sub-note">* 필수입력사항</div>
+
+    <form action="/register-camp" method="post">
+
+      <div class="form-group">
+        <label for="campName">캠핑장명 *</label>
+        <input type="text" id="campName" name="campName" required />
+      </div>
+
+    <div class="form-group">
+        <label for="campAddress">주소 *</label>
+        <input type="text" id="campAddress" name="campAddress" readonly required />
+    </div>
+        <div style="margin-bottom: 15px;">
+        <button type="button" onclick="execDaumPostcode()">주소 검색</button>
+    </div>
+
+      <div class="form-group">
+        <label for="campCode">자체관리코드 *</label>
+        <input type="text" id="campCode" name="campCode" required />
+      </div>
+      
+      <div class="price-section-title">대표가격정보</div>
+      <hr class="section-line" />
+
+
+      <div class="form-group">
+        <label for="priceRegular">정상가 *</label>
+        <input type="number" id="priceRegular" name="priceRegular" required />
+      </div>
+
+      <div class="form-group">
+        <label for="priceSale">판매가 *</label>
+        <input type="number" id="priceSale" name="priceSale" required />
+      </div>
+
+      <div class="form-group">
+        <label for="discountRate">할인률 (%)</label>
+        <input type="number" id="discountRate" name="discountRate" />
+      </div>
+
+      <div class="form-group">
+        <label for="commission">수수료 (%)</label>
+        <input type="number" id="commission" name="commission" />
+      </div>
+
+      <div class="button-wrapper">
+        <button type="submit">Sign Up</button>
+      </div>
+    </form>
+  </div>
+
+  <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <script>
+    function execDaumPostcode() {
+      new daum.Postcode({
+        oncomplete: function(data) {
+          document.getElementById('campAddress').value = data.address;
+        }
+      }).open();
+    }
+  </script>
+
+</body>
+</html>
