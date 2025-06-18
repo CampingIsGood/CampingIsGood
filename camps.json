@@ -15,7 +15,8 @@
     "price": "1박 40,000원~",
     "phone": "010-1111-1111",
     "rating": 4.7,
-    "review": 32
+    "review": 32,
+    "link": "detail.html"
   },
   {
     "name": "초록나무 캠핑장",
