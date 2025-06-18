@@ -154,6 +154,25 @@
   background-color: #E76f51;
 }
 
+.sub-link {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.sub-link a {
+  font-size: 14px;
+  color: #f2f2f2;
+  text-decoration: none;
+  opacity: 0.9;
+}
+
+.sub-link a:hover {
+  color: #E76f51;
+  opacity: 1;
+}
+
 @media (max-width: 768px) {
   .header {
     height: 150px;
@@ -203,6 +222,10 @@
 
   .post-content p {
     font-size: 14px;
+  }
+
+  .sub-link a{
+    font-size:12px;
   }
 
   form input,
@@ -307,7 +330,10 @@
 
   <div class="header">
     <h1>고객센터</h1>
+    <div class="sub-link">
+    <a href="index.html">Home</a>
   </div>
+</div>
 
   <div class="main">
     <div class="sidebar">
