@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,12 +9,15 @@
   <style>
     .complete-container {
       min-height: 100vh;
-      display: flex; flex-direction: column;
-      justify-content: center; align-items: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       position: relative;
       z-index: 2;
       background: url('images/background2.png') center/cover no-repeat;
     }
+
     .complete-card {
       background: #fff;
       border-radius: 36px;
@@ -24,16 +28,60 @@
       text-align: center;
       padding: 60px 24px 68px 24px;
     }
-    .complete-card h1 { font-size: 2.3rem; margin-bottom: 5px;}
-    .complete-card p { font-size: 1.15rem; color: #222; margin-bottom: 17px;}
-    .complete-card .user { font-size: 2.8rem; font-weight: 800; margin-top: 40px; margin-bottom: 10px;}
+
+    .complete-card h1 {
+      font-size: 2.3rem;
+      margin-bottom: 5px;
+    }
+
+    .complete-card p {
+      font-size: 1.15rem;
+      color: #222;
+      margin-bottom: 17px;
+    }
+
+    .complete-card .user {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-top: 40px;
+      margin-bottom: 10px;
+    }
+
+    .home-btn button {
+      margin-top: 30px;
+      padding: 13px 34px;
+      font-size: 1.1rem;
+      background: #f19c62;
+      color: #fff;
+      border: none;
+      border-radius: 18px;
+      font-weight: bold;
+      box-shadow: 0 3px 10px #0002;
+      cursor: pointer;
+      transition: background 0.18s;
+    }
+
+    .home-btn button:hover {
+      background: #e45c0e;
+    }
+
+
     @media (max-width: 600px) {
-      .complete-card { padding: 30px 8vw 40px 8vw; }
-      .complete-card h1 { font-size: 1.3rem;}
-      .complete-card .user { font-size: 1.5rem;}
+      .complete-card {
+        padding: 30px 8vw 40px 8vw;
+      }
+
+      .complete-card h1 {
+        font-size: 1.3rem;
+      }
+
+      .complete-card .user {
+        font-size: 1.5rem;
+      }
     }
   </style>
 </head>
+
 <body>
   <div class="hero-bg" style="height:100vh; min-height:600px;">
     <div class="complete-container">
@@ -41,8 +89,12 @@
         <h1>로즈마리 산골목 캠핑장</h1>
         <p>서울시 성북구 13길 20-3</p>
         <div class="user">User 님 6월 27일 11:00 시 예약 완료</div>
+        <a href="index.html" class="home-btn">
+          <button>홈으로 돌아가기</button>
+        </a>
       </div>
     </div>
   </div>
 </body>
+
 </html>
