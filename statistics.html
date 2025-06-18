@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>통계창</title>
+    <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Arial', sans-serif;
+      color: white;
+    }
+
+    .background {
+      background-image: url('1.jpg');
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+      position: relative;
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.5);
+      width: 100%;
+      height: 100%;
+      padding: 40px;
+      box-sizing: border-box;
+    }
+
+    .welcome {
+      font-size: 36px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .sub-text {
+      font-size: 16px;
+      color: #ddd;
+    }
+
+    
+    .header {
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
+
+    .header p {
+      margin: 5px 0 0 0;
+      font-size: 14px;
+      color: #ccc;
+    }
+
+    .top-section {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .chart-box {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 20px;
+      border-radius: 10px;
+      flex: 1;
+    }
+
+    .chart-title {
+      margin-bottom: 10px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .bottom-section {
+      display: flex;
+      gap: 20px;
+    }
+
+    .info-box {
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 10px;
+      padding: 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      font-size: 16px;
+    }
+
+    .info-box label {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    select {
+      padding: 8px;
+      border-radius: 6px;
+      border: none;
+      font-size: 14px;
+      margin-bottom: 15px;
+      cursor: pointer;
+    }
+
+    .profit-value {
+      font-size: 22px;
+      font-weight: bold;
+      color: #e76f51;
+      text-align: center;
+      user-select: none;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="background">
+    <div class="overlay">
+      <div class="welcome" id="welcome-text">님, 환영합니다!</div>
+      <div class="sub-text">나의 캠핑장 사업장 매출을 확인해보세요</div>
+
+  <div class="top-section">
+    <div class="chart-box">
+      <div class="chart-title">전체 매출 (월 단위)</div>
+      <canvas id="monthlySalesChart" height="200"></canvas>
+    </div>
+    <div class="chart-box">
+      <div class="chart-title">일별 예약수</div>
+      <canvas id="dailyReservationChart" height="200"></canvas>
+    </div>
+  </div>
+
+<div class="bottom-section">
+  <!-- 월별 사용 고객 -->
+  <div class="info-box">
+    <label for="user-month">월별 사용 고객</label>
+    <select id="user-month">
+      <option value="1">1월</option>
+      <option value="2">2월</option>
+      <option value="3">3월</option>
+      <option value="4">4월</option>
+      <option value="5">5월</option>
+    </select>
+    <div class="profit-value" id="user-count">120명</div>
+  </div>
+
+  <!-- 순이익 -->
+  <div class="info-box">
+    <label for="profit-month">순이익</label>
+    <select id="profit-month">
+      <option value="1">1월</option>
+      <option value="2">2월</option>
+      <option value="3">3월</option>
+      <option value="4">4월</option>
+      <option value="5">5월</option>
+    </select>
+    <div class="profit-value" id="profit-value">₩ 1,27,670</div>
+  </div>
+</div>
+
+  </div>
+  </div>
+
+<script>
+    window.onload = function() {
+  function getCookie(name) {
+    const matches = document.cookie.match(new RegExp('(?:^|; )' + name + '=([^;]*)'));
+    return matches ? decodeURIComponent(matches[1]) : null;
+  }
+
+  const userName = getCookie('username');
+if (userName) {
+  document.getElementById('welcome-text').textContent = `${userName}님, 환영합니다!`;
+}
+
+    const monthlySalesCtx = document.getElementById('monthlySalesChart').getContext('2d');
+    const monthlySalesChart = new Chart(monthlySalesCtx, {
+      type: 'line',
+      data: {
+        labels: ['1월', '2월', '3월', '4월', '5월'],
+        datasets: [
+          {
+            label: '매출 1',
+            data: [450, 839, 1204, 1320, 590],
+            borderColor: '#e76f51',
+            backgroundColor: 'rgba(231, 111, 81, 0.3)',
+            fill: true,
+            tension: 0.3
+          },
+          {
+            label: '매출 2',
+            data: [500, 700, 1500, 2100, 1250],
+            borderColor: '#f4a261',
+            backgroundColor: 'rgba(244, 162, 97, 0.3)',
+            fill: true,
+            tension: 0.3
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: { beginAtZero: true }
+        },
+        plugins: {
+          legend: { labels: { color: 'white' } }
+        }
+      }
+    });
+
+    const dailyReservationCtx = document.getElementById('dailyReservationChart').getContext('2d');
+    const dailyReservationChart = new Chart(dailyReservationCtx, {
+      type: 'bar',
+      data: {
+        labels: ['1일', '2일', '3일', '4일', '5일', '6일', '7일'],
+        datasets: [{
+          label: '예약수',
+          data: [10, 6, 3, 21, 3, 14, 5],
+          backgroundColor: '#e76f51'
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: { beginAtZero: true }
+        },
+        plugins: {
+          legend: { labels: { color: 'white' } }
+        }
+      }
+    });
+
+    const profits = {
+      1: '₩ 1,27,670',
+      2: '₩ 506,000',
+      3: '₩ 1,303,000',
+      4: '₩ 430,000',
+      5: '₩ 50,000',
+    };
+
+    const profitSelect = document.getElementById('profit-month');
+    const profitValue = document.getElementById('profit-value');
+
+    profitSelect.addEventListener('change', () => {
+      const month = profitSelect.value;
+      profitValue.textContent = profits[month] || '데이터 없음';
+    });
+
+    const monthlyUsers = {
+  1: '120명',
+  2: '150명',
+  3: '170명',
+  4: '140명',
+  5: '160명'
+};
+
+const userSelect = document.getElementById('user-month');
+const userCount = document.getElementById('user-count');
+
+userSelect.addEventListener('change', () => {
+  const selectedMonth = userSelect.value;
+  userCount.textContent = monthlyUsers[selectedMonth] || '데이터 없음';
+});
+
+};
+</script>
+
+</body>
+</html>
