@@ -20,7 +20,7 @@
     header {
       position: relative;
       height: 250px;
-      background-image: url('3.jpg');
+      background-image: url('images/3.jpg');
       background-size: cover;
       background-position: center;
     }
@@ -134,6 +134,75 @@
   color: #333;
 }
 
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .left, .right {
+    width: 100%;
+    margin: 0;
+  }
+
+  .section-title {
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+
+  .box {
+    height: auto;
+    max-height: 500px;
+    padding: 15px;
+  }
+
+  .camping-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .camping-item img {
+    width: 100%;
+    max-width:300px;
+    height: auto;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .review-images {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+
+  .review-images img {
+    width: 140px;
+    height: 90px;
+  }
+
+  .header-content h1 {
+    font-size: 28px;
+  }
+
+  .header-content p {
+    font-size: 14px;
+  }
+
+  .review-rating {
+    font-size: 14px;
+    margin: 8px 0;
+  }
+
+  .review-texts p {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .detail-link {
+    font-size: 12px;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -149,7 +218,7 @@
       <div class="section-title">내가 찜한 캠핑장</div>
       <div class="box">
         <div class="camping-item">
-          <img src="4.jpg" alt="캠핑장 사진" />
+          <img src="images/4.jpg" alt="캠핑장 사진" />
           <div>
             <h3>화산 글램핑</h3>
             <p>경기도 가평구 64길 15</p>
@@ -157,7 +226,7 @@
           </div>
         </div>
         <div class="camping-item">
-          <img src="5.jpg" alt="캠핑장 사진" />
+          <img src="images/5.jpg" alt="캠핑장 사진" />
           <div>
             <h3>별과 바다와 나 캠핑장</h3>
             <p>서울시 성동구 54길 17-2</p>
@@ -165,7 +234,7 @@
           </div>
         </div>
         <div class="camping-item">
-          <img src="6.jpg" alt="캠핑장 사진" />
+          <img src="images/6.jpg" alt="캠핑장 사진" />
           <div>
             <h3>백일몽 캠핑장</h3>
             <p>경기도 하남시 444길 4</p>
@@ -173,7 +242,7 @@
           </div>
         </div>
         <div class="camping-item">
-          <img src="7.jpg" alt="캠핑장 사진" />
+          <img src="images/7.jpg" alt="캠핑장 사진" />
           <div>
             <h3>럭셔리 캠핑장</h3>
             <p>부산 15길 09동 108호</p>
@@ -193,9 +262,9 @@
     </div>
     <div class="review-rating">★★★☆☆</div>
     <div class="review-images">
-      <img src="8.jpg" alt="캠핑장 이미지 1" />
-      <img src="9.jpg" alt="캠핑장 이미지 2" />
-      <img src="10.jpg" alt="캠핑장 이미지 3" />
+      <img src="images/8.jpg" alt="캠핑장 이미지 1" />
+      <img src="images/9.jpg" alt="캠핑장 이미지 2" />
+      <img src="images/10.jpg" alt="캠핑장 이미지 3" />
     </div>
     <div class="review-texts">
       <p>캠핑장도 잘 꾸며져 있고 너무너무 좋았습니다!</p>
@@ -211,8 +280,8 @@
       </div>
       <div class="review-rating">★★★★☆</div>
       <div class="review-images">
-        <img src="4.jpg" alt="캠핑장 이미지 4" />
-        <img src="5.jpg" alt="캠핑장 이미지 5" />
+        <img src="images/4.jpg" alt="캠핑장 이미지 4" />
+        <img src="images/5.jpg" alt="캠핑장 이미지 5" />
       </div>
       <div class="review-texts">
         <p>원래 공무원 분들이 쓰던 곳이라 그런가 정리도 잘 되어 있고 좋네요!</p>
@@ -228,9 +297,9 @@
       </div>
       <div class="review-rating">★☆☆☆☆</div>
       <div class="review-images">
-        <img src="1.jpg" alt="캠핑장 이미지 6" />
-        <img src="2.jpg" alt="캠핑장 이미지 6" />
-        <img src="3.jpg" alt="캠핑장 이미지 6" />
+        <img src="images/1.jpg" alt="캠핑장 이미지 6" />
+        <img src="images/2.jpg" alt="캠핑장 이미지 6" />
+        <img src="images/3.jpg" alt="캠핑장 이미지 6" />
       </div>
       <div class="review-texts">
         <p>다 좋은데 자꾸 귀신??ㅠㅠㅠ이 나온다는 소문이 있네요.</p>
