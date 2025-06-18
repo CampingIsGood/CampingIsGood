@@ -11,7 +11,7 @@
     }
 
     body {
-      background-image: url('14.jpg'); /* 배경 유지 */
+      background-image: url('images/14.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -118,6 +118,49 @@
     .delete-btn:hover {
         text-decoration: underline;
     }
+
+    @media (max-width: 768px) {
+  .form-wrapper {
+    width: 100%;
+    height: 100vh;
+    padding: 20px;
+    border-radius: 0;
+  }
+
+  .camp-layout {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .camp-image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .review-box {
+    width: 100%;
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  .camp-name {
+    font-size: 18px;
+  }
+
+  .camp-address {
+    font-size: 11px;
+  }
+
+  .delete-btn {
+    font-size: 12px;
+  }
+
+  h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+}
   </style>
 </head>
 <body>
@@ -130,7 +173,7 @@
     <div class="camp-address">경기도 가평구 64길 15</div>
   </div>
   <div class="camp-layout">
-    <img src="14.jpg" alt="캠핑장 이미지" class="camp-image">
+    <img src="images/14.jpg" alt="캠핑장 이미지" class="camp-image">
     <div class="review-box">
   <div class="review">
     장수풍뎅이 포획 활동 너무너무 재밌어요. 구성도 알차고, 참가비도 싸고요. 저희 애들도 엄청 좋아하더라고요. 아이 있는 집은 반드시 가보세요.
@@ -155,7 +198,7 @@
     <div class="camp-address">울산 가룡산 꼭대기</div>
   </div>
   <div class="camp-layout">
-    <img src="15.jpg" alt="캠핑장 이미지" class="camp-image">
+    <img src="images/15.jpg" alt="캠핑장 이미지" class="camp-image">
     <div class="review-box">
   <div class="review">
     남매가 운영하는 것 같은데, 자꾸 싸워서 좀... 불안하긴 하더라고요. 시설은 좋았습니다.
@@ -176,7 +219,7 @@
     <div class="camp-address">경기도 하남시 학암로 15길</div>
   </div>
   <div class="camp-layout">
-    <img src="9.jpg" alt="캠핑장 이미지" class="camp-image">
+    <img src="images/9.jpg" alt="캠핑장 이미지" class="camp-image">
     <div class="review-box">
   <div class="review">
     캠핑장도 잘 꾸며져 있고 너무너무 좋았습니다! 다만 화장실이랑 데크가 너무 멀어서 불편하기도 했고, 식수대가 캠핑장 입구?쪽에 있어서 묵으면서 고생 꽤나 했어요
@@ -205,7 +248,7 @@
     <div class="camp-address">부산 444길</div>
   </div>
   <div class="camp-layout">
-    <img src="4.jpg" alt="캠핑장 이미지" class="camp-image">
+    <img src="images/4.jpg" alt="캠핑장 이미지" class="camp-image">
     <div class="review-box">
   <div class="review">
     여기 귀신 나와요ㅠㅠㅠㅠ싸다고 가시면 안 됩니다 진짜
