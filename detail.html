@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>캠핑장 상세</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero {
+      height: 70vh;
+      background-image: url('16.jpg'); /* 캠핑장 이미지 */
+      background-size: cover;
+      background-position: center;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      flex-direction: column;
+    }
+
+    .camp-name {
+      font-size: 48px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .camp-address {
+      font-size: 18px;
+      color: #eee;
+    }
+
+    .description-section {
+      background-color: #ffc0b0;
+      height: 40vh;
+      padding: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .camp-description {
+        background-color:white;
+        border-radius:12px;
+      max-width: 500px;
+      height:180px;
+      padding:20px;
+      text-align: left;
+      font-size: 16px;
+      flex-direction:column;
+      gap:12px;
+      color: #333;
+      line-height: 1.6;
+      overflow-y:auto;
+      display:flex;
+      box-shadow:0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .camp-description div {
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 8px;
+}
+
+    .actions {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .icon-btn {
+      background: none;
+      border: none;
+      font-size: 32px;
+      cursor: pointer;
+      color: white;
+    }
+
+    .book-btn {
+      background-color: #e76f51;
+      color: white;
+      border: none;
+      border-radius: 20px;
+      padding: 14px 28px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .book-btn:hover {
+      background-color: #c4593f;
+    }
+
+    .icon-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.icon-img {
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.icon-img:hover {
+  transform: scale(1.1);
+}
+
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <div class="camp-name">로즈마리 산골목 캠핑장</div>
+    <div class="camp-address">서울시 성북구 13길 20-3</div>
+  </div>
+
+  <div class="description-section">
+    <div class="camp-description">
+      아름다운 호수와 함께하는 낭만적인 추억. 가족, 연인, 자식들과 함께 다시는 잊지 못할 최고의 순간을 보내보세요!
+      <div>체크인: 오후 2시</div>
+    <div>체크아웃: 오전 11시</div>
+    <div>운영기간: 봄, 여름, 가을, 겨울</div>
+    <div>운영일: 평일+주말</div>
+    <div>예약방법: 온라인실시간예약</div>
+    <div>주변이용가능시설:산책로,바베큐,탁구장, 농어촌체험시설,산책로</div>
+    </div>
+
+    <div class="actions">
+  <div class="icon-buttons">
+        <img src="17.png" alt="찜하기" class="icon-img" onclick="alert('찜 되었습니다!')" />
+        <img src="18.png" alt="후기보기" class="icon-img" onclick="location.href='review.html'" />
+      <button class="book-btn" onclick="location.href='reserve.html'">Book now</button>
+    </div>
+  </div>
+
+</body>
+</html>
