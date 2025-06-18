@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>내 캠핑장 관리</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      height: 100vh;
+    }
+
+    .left-pane {
+      background-color: #E76f51;
+      width: 85%;
+      padding: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .right-pane {
+      width: 15%;
+      background-image: url('13.jpg');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.6;
+    }
+
+    .content-box {
+      background-color: white;
+      border-radius: 20px;
+      padding: 30px;
+      width: 90%;
+      max-width: 1400px;
+      height: 90vh;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    .camp-list {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .camp-block {
+      background: #f5f5f5;
+      border-radius: 15px;
+      padding: 20px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .camp-title {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .camp-layout {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .camp-image {
+      width: 160px;
+      height: 100px;
+      border-radius: 15px;
+      object-fit: cover;
+    }
+
+    .camp-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .camp-controls button {
+      padding: 6px 10px;
+      border: none;
+      border-radius: 8px;
+      background-color: #E76f51;
+      color: white;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .camp-description {
+      flex: 1;
+      margin-left: 10px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 8px;
+      height: 100px;
+      overflow-y: auto;
+      background: white;
+      font-size: 14px;
+      color: #333;
+    }
+
+    .camp-rating {
+      color: #E76f51;
+      font-size: 18px;
+      margin-top: 8px;
+    }
+
+    .save-button {
+  width: 120px;
+  padding: 12px;
+  background-color: #E76f51;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 20px auto 10px auto;
+  display: block;
+  transition: background-color 0.3s ease;
+}
+
+.save-button:hover {
+  background-color: #ae6d5c;
+}
+
+  </style>
+</head>
+<body>
+  <div class="left-pane">
+    <div class="content-box">
+      <h2>내 캠핑장 관리</h2>
+      <div class="camp-list">
+        <div class="camp-block">
+          <div class="camp-title">럭셔리 호수 캠핑장</div>
+          <div class="camp-layout">
+            <img src="9.jpg" alt="캠핑장1" class="camp-image" id="img1">
+            <div class="camp-controls">
+             <input
+        type="file"
+        accept="image/*"
+        style="display: none;"
+        id="fileInput1"
+        onchange="changePhoto(event, 'img1')"
+      />
+      <button onclick="document.getElementById('fileInput1').click()">사진 수정하기</button>
+      <button onclick="editDescription('desc1')">설명문 수정하기</button>
+    </div>
+            <div class="camp-description" id="desc1">
+              호수를 필두로 하여 사시사철 시원하고 고급 시설을 완비하여 캠핑하시는 분들의 편의를 위해 최선을 다하는 고급 캠핑장입니다.
+            </div>
+          </div>
+          <div class="camp-rating">⭐️⭐️⭐️☆☆</div>
+        </div>
+
+        <div class="camp-block">
+          <div class="camp-title">아늑 캠핑장</div>
+          <div class="camp-layout">
+            <img src="8.jpg" alt="캠핑장2" class="camp-image" id="img2">
+            <div class="camp-controls">
+                <input
+        type="file"
+        accept="image/*"
+        style="display: none;"
+        id="fileInput2"
+        onchange="changePhoto(event, 'img2')"
+      />
+              <button onclick="document.getElementById('fileInput2').click()">사진 수정하기</button>
+              <button onclick="editDescription('desc2')">설명문 수정하기</button>
+            </div>
+            <div class="camp-description" id="desc2">
+              아이들! 혹은 노쇠하시 부모님과 함께! 투숙객들의 안전과 정다움을 최우선 가치로 삼습니다. 언제나 바베큐장 및 탁구장 등 편의시설이 전면 개방되어 있어 남녀노소 가리지 않고 모두 좋아합니다!
+            </div>
+          </div>
+          <div class="camp-rating">⭐️⭐️⭐️⭐️☆</div>
+        </div>
+
+        <div class="camp-block">
+          <div class="camp-title">별빛 야영장</div>
+          <div class="camp-layout">
+            <img src="5.jpg" alt="캠핑장3" class="camp-image" id="img3">
+            <div class="camp-controls">
+                <input
+        type="file"
+        accept="image/*"
+        style="display: none;"
+        id="fileInput3"
+        onchange="changePhoto(event, 'img3')"
+      />
+              <button onclick="document.getElementById('fileInput3').click()">사진 수정하기</button>
+              <button onclick="editDescription('desc3')">설명문 수정하기</button>
+            </div>
+            <div class="camp-description" id="desc3">
+              별똥별 보기 가장 좋은 위치! 무려 천체 망원경까지 구비한, 지금까지의 대한민국엔 없었던 차원이 다른 캠핑장! 매주 월요일에는 천체관측쇼도 있으니 아이들과 오기도 안성맞춤! 무려 평균별점 5점!
+            </div>
+          </div>
+          <div class="camp-rating">⭐️⭐️⭐️⭐️⭐️</div>
+        </div>
+
+        <div class="camp-block">
+          <div class="camp-title">자연 야영장</div>
+          <div class="camp-layout">
+            <img src="9.jpg" alt="캠핑장4" class="camp-image" id="img4">
+            <div class="camp-controls">
+                <input
+        type="file"
+        accept="image/*"
+        style="display: none;"
+        id="fileInput2"
+        onchange="changePhoto(event, 'img4')"
+      />
+              <button onclick="document.getElementById('fileInput4').click()">사진 수정하기</button>
+              <button onclick="editDescription('desc4')">설명문 수정하기</button>
+            </div>
+            <div class="camp-description" id="desc4">
+              벌레가 많이 나온다 싫어하시는 분들도 계시지만, 벌레가 많다는 것은 즉 '진짜' 자연에 가깝다는 뜻입니다. '진짜' 자연에서 다른 캠핑장과는 차원이 다른 건강을 찾아보세요!
+            </div>
+          </div>
+          <div class="camp-rating">⭐️☆☆☆☆</div>
+        </div>
+
+      </div>
+      <button class="save-button" onclick="saveChanges()">저장하기</button>
+    </div>
+  </div>
+
+  <div class="right-pane"></div>
+
+  <script>
+    function editDescription(id) {
+      const newText = prompt("새 설명을 입력하세요:");
+      if (newText) {
+        document.getElementById(id).innerText = newText;
+      }
+    }
+
+function changePhoto(event, imgId) {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        document.getElementById(imgId).src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  function saveChanges(){
+    alert('저장되었습니다!');
+  }
+  </script>
+</body>
+</html>
