@@ -14,7 +14,7 @@
     }
 
     .background {
-      background-image: url('1.jpg');
+      background-image: url('images/1.jpg');
       background-size: cover;
       background-position: center;
       height: 100vh;
@@ -71,7 +71,6 @@
     }
 
     .chart-title {
-      margin-bottom: 10px;
       font-weight: bold;
       font-size: 18px;
     }
@@ -98,21 +97,66 @@
     }
 
     select {
-      padding: 8px;
-      border-radius: 6px;
-      border: none;
       font-size: 14px;
-      margin-bottom: 15px;
-      cursor: pointer;
+      width:100%;
     }
 
     .profit-value {
-      font-size: 22px;
-      font-weight: bold;
-      color: #e76f51;
-      text-align: center;
-      user-select: none;
+      font-size: 16px;
+      padding-top:5px;
     }
+
+@media (max-width: 768px) {
+  .overlay {
+    padding: 20px;
+  }
+
+  .welcome {
+    font-size: 28px;
+    text-align: center;
+  }
+
+  .sub-text {
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .top-section,
+  .bottom-section {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .chart-box,
+  .info-box {
+    width: 100%;
+  }
+
+  .chart-title {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  select {
+    font-size: 14px;
+    padding: 6px;
+  }
+
+  .profit-value {
+    font-size: 20px;
+    padding-top: 5px;
+  }
+
+  .header h1 {
+    font-size: 24px;
+  }
+
+  .header p {
+    font-size: 13px;
+  }
+}
+
   </style>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -134,7 +178,6 @@
   </div>
 
 <div class="bottom-section">
-  <!-- 월별 사용 고객 -->
   <div class="info-box">
     <label for="user-month">월별 사용 고객</label>
     <select id="user-month">
@@ -147,7 +190,6 @@
     <div class="profit-value" id="user-count">120명</div>
   </div>
 
-  <!-- 순이익 -->
   <div class="info-box">
     <label for="profit-month">순이익</label>
     <select id="profit-month">
