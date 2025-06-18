@@ -26,7 +26,7 @@
 
     .right-pane {
       width: 15%;
-      background-image: url('13.jpg');
+      background-image: url('images/13.jpg');
       background-size: cover;
       background-position: center;
       opacity: 0.6;
@@ -135,6 +135,82 @@
   background-color: #ae6d5c;
 }
 
+  @media (max-width: 768px) {
+  body {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .left-pane {
+    width: 100%;
+    padding: 20px;
+    height: auto;
+  }
+
+  .right-pane {
+    display: none;
+  }
+
+  .content-box {
+    width: 100%;
+    height: auto;
+    padding: 20px;
+  }
+
+  .camp-layout {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .camp-image {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+  }
+
+  .camp-controls {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0;
+  }
+
+  .camp-controls button {
+    flex: 1 1 45%;
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .camp-description {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 10px;
+    height: auto;
+  }
+
+  .save-button {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+  }
+
+  h2 {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .camp-title {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .camp-rating {
+    text-align: center;
+    font-size: 16px;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -145,7 +221,7 @@
         <div class="camp-block">
           <div class="camp-title">럭셔리 호수 캠핑장</div>
           <div class="camp-layout">
-            <img src="9.jpg" alt="캠핑장1" class="camp-image" id="img1">
+            <img src="images/9.jpg" alt="캠핑장1" class="camp-image" id="img1">
             <div class="camp-controls">
              <input
         type="file"
@@ -169,7 +245,7 @@
         <div class="camp-block">
           <div class="camp-title">아늑 캠핑장</div>
           <div class="camp-layout">
-            <img src="8.jpg" alt="캠핑장2" class="camp-image" id="img2">
+            <img src="images/8.jpg" alt="캠핑장2" class="camp-image" id="img2">
             <div class="camp-controls">
                 <input
         type="file"
@@ -193,7 +269,7 @@
         <div class="camp-block">
           <div class="camp-title">별빛 야영장</div>
           <div class="camp-layout">
-            <img src="5.jpg" alt="캠핑장3" class="camp-image" id="img3">
+            <img src="images/5.jpg" alt="캠핑장3" class="camp-image" id="img3">
             <div class="camp-controls">
                 <input
         type="file"
@@ -217,7 +293,7 @@
         <div class="camp-block">
           <div class="camp-title">자연 야영장</div>
           <div class="camp-layout">
-            <img src="9.jpg" alt="캠핑장4" class="camp-image" id="img4">
+            <img src="images/9.jpg" alt="캠핑장4" class="camp-image" id="img4">
             <div class="camp-controls">
                 <input
         type="file"
@@ -266,6 +342,7 @@ function changePhoto(event, imgId) {
 
   function saveChanges(){
     alert('저장되었습니다!');
+    window.location.href = 'administrator_main.html';
   }
   </script>
 </body>
