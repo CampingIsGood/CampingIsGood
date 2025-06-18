@@ -17,7 +17,7 @@
     }
 
     body {
-      background-image: url('1.png');
+      background-image: url('1.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -179,18 +179,6 @@
   <button type="button" onclick="execDaumPostcode()" style="margin-top: 8px;">주소 검색</button>
 </div>
 
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
-  function execDaumPostcode() {
-    new daum.Postcode({
-      oncomplete: function(data) {
-        // 선택된 주소를 input에 넣기
-        document.getElementById('address').value = data.address;
-      }
-    }).open();
-  }
-</script>
-
 <br></br>
 
       <div class="form-group">
@@ -210,5 +198,22 @@
     </form>
   </div>
 
+  <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+  function execDaumPostcode() {
+    new daum.Postcode({
+      oncomplete: function(data) {
+        document.getElementById('address').value = data.address;
+      }
+    }).open();
+  }
+
+    document.querySelector("form").addEventListener("submit", function(e) {
+      e.preventDefault();
+    const name = document.getElementById("name").value;
+    document.cookie = `username=${encodeURIComponent(name)}; path=/; max-age=86400`; // 1일 유지
+    window.location.href="index.html";
+  });
+</script>
 </body>
 </html>
