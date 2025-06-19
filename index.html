@@ -10,8 +10,8 @@
 </head>
 
 <body>
-    <!-- Header -->
-    <header>
+
+<header>
   <h1>캠핑 이즈 굿</h1>
   <nav class="nav-scroll">
     <a href="mypage.html" class="nav-btn">마이페이지</a>
@@ -22,7 +22,7 @@
 </header>
 
 
-    <!-- Main -->
+
     <main>
         <section class="left-panel">
             <h2>캠핑러들을 위한 맞춤 서비스</h2>
@@ -48,73 +48,92 @@
             <h2>명예의 전당</h2>
             <div class="slider-wrapper">
                 <button class="slide-btn left">&#10094;</button>
-
-                <div class="slider" id="slider">
-                    <!-- 카드 1 -->
-                    <div class="slide">
-                        <img src="images/럭셔리 호수.png" alt="호수 캠핑장">
-                        <span class="rank">서울 1등</span>
-                        <h3>럭셔리 호수 캠핑장</h3>
-                        <p>서울 종로구 21길 13-2</p>
-                        <a href="hall-of-fame.html" class="main-btn">둘러보기</a>
-                    </div>
-                    <!-- 카드 2 -->
-                    <div class="slide">
-                        <img src="images/숲속 힐링.png" alt="숲속 캠핑장">
-                        <span class="rank">경기 1등</span>
-                        <h3>숲속 힐링 캠핑장</h3>
-                        <p>경기도 남양주시 깊은숲길 55</p>
-                        <a href="hall-of-fame.html" class="main-btn">둘러보기</a>
-                    </div>
-                    <!-- 카드 3 -->
-                    <div class="slide">
-                        <img src="images/해변오션뷰.png" alt="바다 캠핑장">
-                        <span class="rank">부산 1등</span>
-                        <h3>해변 오션뷰 캠핑장</h3>
-                        <p>부산 해운대구 해변로 10</p>
-                        <a href="hall-of-fame.html" class="main-btn">둘러보기</a>
-                    </div>
-                </div>
-
+                <div class="slider" id="slider"></div>
                 <button class="slide-btn right">&#10095;</button>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
+
     <footer>
         <p>문의: 010-1234-5678 / campingisgood@gamil.com</p>
     </footer>
 
-    <!-- JavaScript for Slider -->
-    <script>
-        const slider = document.getElementById("slider");
-        const slides = document.querySelectorAll(".slide");
-        const prevBtn = document.querySelector(".slide-btn.left");
-        const nextBtn = document.querySelector(".slide-btn.right");
 
+    <script>
+        let slidesData = [];
         let index = 0;
-        const total = slides.length;
+        let auto = null;
+
+        function getTopByProvince(list) {
+            const result = {};
+            list.forEach(item => {
+                if (!result[item.province]) result[item.province] = [];
+                result[item.province].push(item);
+            });
+            // 각 시/도 1등만 추출
+            return Object.entries(result).map(([province, arr]) => {
+                arr.sort((a, b) => b.rating - a.rating);
+                const top = arr[0];
+                return {
+                    province,
+                    ...top
+                };
+            });
+        }
+
+        function renderSlides() {
+            const slider = document.getElementById("slider");
+            slider.innerHTML = slidesData.map((site, i) => `
+            <div class="slide" style="min-width:100%">
+                <img src="${site.img}" alt="${site.name}">
+                <span class="rank">${site.province} 1등</span>
+                <h3>${site.name}</h3>
+                <p>${site.addr}</p>
+                <a href="hall-of-fame.html" class="main-btn">둘러보기</a>
+            </div>
+        `).join('');
+            updateSlide();
+        }
 
         function updateSlide() {
+            const slider = document.getElementById("slider");
+            slider.style.display = "flex";
+            slider.style.transition = "transform 0.6s cubic-bezier(0.77,0,0.175,1)";
             slider.style.transform = `translateX(-${index * 100}%)`;
         }
 
-        nextBtn.addEventListener("click", () => {
-            index = (index + 1) % total;
+        function next() {
+            index = (index + 1) % slidesData.length;
             updateSlide();
-        });
+            resetAuto();
+        }
+        function prev() {
+            index = (index - 1 + slidesData.length) % slidesData.length;
+            updateSlide();
+            resetAuto();
+        }
+        function resetAuto() {
+            if (auto) clearInterval(auto);
+            auto = setInterval(() => {
+                next();
+            }, 3000);
+        }
 
-        prevBtn.addEventListener("click", () => {
-            index = (index - 1 + total) % total;
-            updateSlide();
-        });
+        document.querySelector(".slide-btn.left").onclick = prev;
+        document.querySelector(".slide-btn.right").onclick = next;
 
-        // 자동 슬라이드 (3초마다)
-        setInterval(() => {
-            index = (index + 1) % total;
-            updateSlide();
-        }, 3000);
+        fetch('camps.json')
+            .then(res => res.json())
+            .then(camps => {
+                slidesData = getTopByProvince(camps);
+                index = 0;
+                renderSlides();
+                resetAuto();
+            })
+            .catch(() => {
+                document.getElementById("slider").innerHTML = "<p style='color:red'>명예의 전당 데이터를 불러올 수 없습니다.</p>";
+            });
     </script>
 </body>
 </html>
