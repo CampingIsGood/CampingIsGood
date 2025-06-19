@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>로즈마리 산골목 캠핑장</title>
+  <link rel="stylesheet" href="camp-detail.css">
+</head>
+<body>
+  <div class="hero">
+    <div class="hero-content">
+      <h1 class="camp-name">로즈마리 산골목 캠핑장</h1>
+      <div class="camp-address">서울시 성북구 13길 20-3</div>
+    </div>
+  </div>
+  <div class="main-content">
+    <div class="detail-box">
+      <div class="star-rating">
+        <span class="star orange">★</span>
+        <span class="star orange">★</span>
+        <span class="star orange">★</span>
+        <span class="star gray">★</span>
+        <span class="star gray">★</span>
+      </div>
+      <div class="btn-row">
+        <button class="popup-btn" onclick="openNoticePopup()">관리자 공지 확인</button>
+        <button class="popup-btn" onclick="openLinkPopup()">다른 페이지에서 확인</button>
+      </div>
+      <div class="camp-description">
+       아름다운 호수와 함께하는 낭만적인 추억. 가족, 연인, 자식들과 함께 다시는 잊지 못할 최고의 순간을 보내보세요!
+      </div>
+      <div class="camp-detail-info">
+        <div class="info-title">참고사항들</div>
+        <div class="info-list">
+            <div>체크인: 오후 2시</div>
+            <div>체크아웃: 오전 11시</div>
+            <div>운영기간: 봄, 여름, 가을, 겨울</div>
+            <div>운영일: 평일+주말</div>
+            <div>주변이용가능시설:산책로,바베큐,탁구장, 농어촌체험시설,산책로</div>
+        </div>
+      </div>
+      <div class="best-review-title">Best Review</div>
+      <div class="review-box">
+        <div class="review-user">
+          <span class="user-icon">👤</span>
+          <span class="review-text">바베큐장도 있고 너무 좋았어요~</span>
+        </div>
+        <button class="review-detail-btn" onclick="location.href='review.html'">상세 보기</button>
+      </div>
+    </div>
+    <div class="side-menu">
+      <button class="icon-btn calendar" onclick="goReservePage()" title="예약하기">
+        <img src="images/calendar.png" alt="달력" width="36" height="36">
+      </button>
+      <button class="icon-btn heart" onclick="openLikePopup()" title="찜하기">
+        <img src="images/17.png" alt="찜" width="36" height="36">
+      </button>
+    </div>
+  </div>
+
+  <!-- 공지사항 팝업 -->
+  <div class="popup" id="notice-popup">
+    <div class="popup-inner">
+      <h2>공지사항</h2>
+      <ul>
+        <li>시설 점검: 6월 24일(월) 10:00~13:00</li>
+        <li>바베큐장 이용 시 화기 주의</li>
+        <li>애완동물 동반 불가</li>
+      </ul>
+      <button onclick="closeNoticePopup()">닫기</button>
+    </div>
+  </div>
+
+  <!-- 다른 페이지 링크 팝업 -->
+  <div class="popup" id="link-popup">
+    <div class="popup-inner">
+      <h2>다른 예약 사이트 모음</h2>
+      <ul>
+        <li><a href="https://naver.com" target="_blank">네이버 캠핑 예약</a></li>
+        <li><a href="https://daum.net" target="_blank">다음 캠핑존</a></li>
+        <li><a href="https://google.com" target="_blank">기타 예약 링크</a></li>
+      </ul>
+      <button onclick="closeLinkPopup()">닫기</button>
+    </div>
+  </div>
+
+  <!-- 찜 알림 팝업 -->
+  <div class="popup" id="like-popup">
+    <div class="popup-inner">
+      <h2>찜했습니다!</h2>
+      <button onclick="closeLikePopup()">확인</button>
+    </div>
+  </div>
+
+  <script>
+    // 공지사항 팝업
+    function openNoticePopup() {
+      document.getElementById('notice-popup').style.display = 'flex';
+      document.body.classList.add('popup-open');
+    }
+    function closeNoticePopup() {
+      document.getElementById('notice-popup').style.display = 'none';
+      document.body.classList.remove('popup-open');
+    }
+    // 링크 팝업
+    function openLinkPopup() {
+      document.getElementById('link-popup').style.display = 'flex';
+      document.body.classList.add('popup-open');
+    }
+    function closeLinkPopup() {
+      document.getElementById('link-popup').style.display = 'none';
+      document.body.classList.remove('popup-open');
+    }
+    // 찜 팝업
+    function openLikePopup() {
+      document.getElementById('like-popup').style.display = 'flex';
+      document.body.classList.add('popup-open');
+    }
+    function closeLikePopup() {
+      document.getElementById('like-popup').style.display = 'none';
+      document.body.classList.remove('popup-open');
+    }
+    // 달력 이동
+    function goReservePage() {
+      window.location.href = 'reserve.html';
+    }
+  </script>
+</body>
+</html>
