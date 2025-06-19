@@ -23,19 +23,18 @@ body, html {
 .review-rating {
   font-size: 5rem;
   font-weight: 800;
-  color: #222;
-  text-shadow: 0 4px 18px #fff9;
+  color: #f2f2f2;
   margin-bottom: 0.25em;
 }
 .review-camp {
   font-size: 2.1rem;
   font-weight: 700;
-  color: #222;
+  color: #f2f2f2;
   letter-spacing: -1px;
 }
 .review-address {
   font-size: 1.15rem;
-  color: #333;
+  color: #f2f2f2;
   margin-top: 0.1em;
 }
 .review-main {
