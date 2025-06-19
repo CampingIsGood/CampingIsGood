@@ -98,22 +98,32 @@
     </div>
   </div>
   <script>
+    // 쿼리스트링 값 가져오는 함수
     function getQuery(name) {
       const params = new URLSearchParams(location.search);
       return params.get(name);
     }
 
+    // 쿠키에서 값 읽는 함수
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return decodeURIComponent(parts.pop().split(';').shift());
+      return null;
+    }
+
     const date = getQuery('date');
     const time = getQuery('time');
-    const user = "User"; // 로그인 시스템 구현 안됨, user 로 고정
+    const username = getCookie('username') || "User";  // 쿠키에서 username 읽기
 
     if (date && time) {
       document.getElementById('reserve-info').textContent =
-        `${user} 님 ${date} ${time} 예약 완료`;
+        `${username} 님 ${date} ${time} 예약 완료`;
     } else {
       document.getElementById('reserve-info').textContent = "예약 정보가 없습니다.";
     }
   </script>
+
 
 </body>
 

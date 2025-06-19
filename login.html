@@ -24,6 +24,10 @@
   <script>
     document.getElementById('login-form').onsubmit = function(e){
       e.preventDefault();
+      // 아이디 input의 값 가져오기
+      const userid = document.getElementById('userid').value;
+      // 쿠키에 username 저장 (1일 유지)
+      document.cookie = `username=${encodeURIComponent(userid)}; path=/; max-age=86400`;
       window.location.href = 'index.html';
     }
   </script>
